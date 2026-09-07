@@ -1,0 +1,32 @@
+[package]
+name = "chess-engine"
+version = "0.1.0"
+edition = "2021"
+description = "Moteur d'échecs en Rust : génération de coups, minimax + élagage alpha-bêta, recherche par quiescence, protocole UCI. Zéro dépendance pour le cœur."
+license = "MIT"
+
+[lib]
+name = "chess_engine"
+path = "src/lib.rs"
+
+[[bin]]
+name = "chess-uci"
+path = "src/bin/uci.rs"
+
+[[bin]]
+name = "chess-perft"
+path = "src/bin/perft.rs"
+
+[dependencies]
+
+[dev-dependencies]
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = true
+codegen-units = 1
