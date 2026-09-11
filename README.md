@@ -138,7 +138,10 @@ Le binaire `chess-uci` implémente un sous-ensemble du protocole
 `isready`, `ucinewgame`, `position [startpos|fen ...] [moves ...]`,
 `go [depth N]`, `quit`) — suffisant pour être piloté par n'importe quelle
 interface graphique d'échecs standard qui parle UCI (`cutechess-cli`, par
-exemple), ou testé à la main :
+exemple), ou testé à la main. **`go` est bloquant et `stop` est un
+no-op** : voir "Limites connues" ci-dessous avant de brancher une
+interface graphique qui compte pouvoir interrompre une recherche en
+cours.
 
 ```
 $ cargo run --bin chess-uci
@@ -218,6 +221,17 @@ plus significatifs :
 - **Pas de gestion fine du temps** : seuls "profondeur fixe" et "date
   limite" sont exposés, pas d'allocation de temps par coup selon le temps
   restant à la pendule (comme le ferait un vrai moteur de tournoi).
+- **`go` bloque le thread UCI jusqu'à la fin de la recherche, et `stop` ne
+  l'interrompt pas.** `UciEngine::handle_line("go ...")` appelle
+  `search::search` de façon synchrone, sans thread séparé ni mécanisme
+  d'annulation ; la boucle `stdin`/`stdout` du binaire ne peut donc pas
+  lire (ni a fortiori traiter) une commande `stop` tant que la recherche
+  en cours n'est pas terminée d'elle-même. Dans le code, `stop` est
+  d'ailleurs traité exactement comme `quit` (`vec![]`, aucun effet). Une
+  interface graphique standard qui envoie `stop` pour couper une recherche
+  trop longue (profondeur élevée, ou limite de temps dépassée côté GUI) ne
+  sera donc pas obéie avant la fin naturelle de cette recherche — à garder
+  en tête avant de brancher ce moteur sur une GUI en partie cadencée.
 
 ## Licence
 
