@@ -6,11 +6,13 @@
 //! stdin/stdout, sans bibliothèque tierce non plus.
 
 pub mod board;
+pub mod coach;
 pub mod eval;
 pub mod movegen;
 pub mod moves;
 pub mod perft;
 pub mod piece;
+pub mod san;
 pub mod search;
 pub mod uci;
 
