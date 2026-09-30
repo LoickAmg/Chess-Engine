@@ -8,7 +8,8 @@ export type Route =
   | { name: "coords" }
   | { name: "puzzles" }
   | { name: "puzzle"; id: string }
-  | { name: "glossary" };
+  | { name: "glossary" }
+  | { name: "appearance" };
 
 export const useUiStore = defineStore("ui", {
   state: () => ({

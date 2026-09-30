@@ -8,10 +8,10 @@ génération de coups, évaluation, recherche) n'a **aucune** dépendance
 externe ; seul le binaire UCI fait de l'I/O sur `stdin`/`stdout`, en Rust
 standard.
 
-## Chess Académie : apprendre les échecs avec le moteur
+## Chess Academy : apprendre les échecs avec le moteur
 
-Le dossier [`app/`](app/) contient **Chess Académie**, une application de bureau
-(Tauri + Vue) construite sur ce moteur. C'est un professeur d'échecs :
+Le dossier [`app/`](app/) contient **Chess Academy**, une application de bureau
+(Tauri + Vue) construite sur ce moteur. Ton professeur s'appelle **Academy** :
 
 - **31 leçons** en 9 chapitres : l'échiquier et le nom des cases, chaque pièce
   (avec des parcours « attrape les étoiles »), la valeur des pièces, l'échec, le
@@ -19,12 +19,27 @@ Le dossier [`app/`](app/) contient **Chess Académie**, une application de burea
   la notation française (R, D, T, F, C), les principes d'ouverture, les tactiques
   (fourchette, clouage, enfilade, découverte, pièces en prise), les mats
   élémentaires et les finales (opposition, règle du carré, pion passé) ;
-- **Jouer contre Lumi** : cinq niveaux, et après chacun de tes coups une analyse
-  (meilleur coup, imprécision, erreur, gaffe) avec des explications : pièces
-  laissées en prise, mat manqué, principes d'ouverture, meilleur coup à la place ;
-  indices, reprise de coup, barre d'évaluation ;
+- **Partie commentée contre Academy** : cinq niveaux, et après chacun de tes coups
+  une analyse (meilleur coup, imprécision, erreur, gaffe) avec des explications :
+  pièces laissées en prise, mat manqué, principes d'ouverture, meilleur coup à la
+  place ; indices, reprise de coup, barre d'évaluation ;
 - **20 puzzles** (mats en 1 et en 2, fourchettes, clouages, enfilades…),
   un **entraînement aux cases** chronométré et un **lexique**.
+
+### Apparence
+
+Trois réglages indépendants (écran « Apparence ») :
+
+| Thème | Esprit | Échiquier et pièces par défaut |
+|---|---|---|
+| **Classique** | ivoire, beige et ébène, serif Cormorant | bois et ébène, Staunton |
+| **Persona 5** | rouge, noir et blanc, angles vifs | Persona 5, Persona |
+| **Persona 3** | bleu nuit et cyan | Persona 3, cristal |
+| **Encre de Chine** | papier washi, lavis, sceau vermillon | lavis d'encre, encre |
+
+Échiquiers : bois et ébène, marbre, cristal, Persona 5, Persona 3, lavis d'encre.
+Pièces (silhouettes Staunton dessinées à la main) : buis et ébène, cristal,
+holographique, Persona, encre.
 
 Les leçons et les puzzles sont des fichiers JSON (`app/src/data/`) rejoués par
 les tests (`app/src-tauri/tests/content.rs`) : chaque position est lue par le
@@ -36,14 +51,14 @@ L'installateur Windows se construit avec :
 cd app && npm install && npx tauri build
 ```
 
-Il produit `app/src-tauri/target/release/bundle/nsis/Chess Académie_1.0.0_x64-setup.exe`
+Il produit `app/src-tauri/target/release/bundle/nsis/Chess Academy_1.0.0_x64-setup.exe`
 (installation sans droits administrateur, raccourcis menu Démarrer et Bureau).
 
 > **Pourquoi `chess-uci.exe` « se ferme tout seul » ?** Ce binaire n'est pas une
 > application : c'est un moteur au protocole UCI, qui attend des commandes texte
 > sur son entrée standard. Il est fait pour être branché dans une interface
 > d'échecs (Arena, Cute Chess, En Croissant…). Pour jouer et apprendre, lance
-> Chess Académie.
+> Chess Academy.
 
 ## Ce que fait (et ne fait pas) ce moteur
 

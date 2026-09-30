@@ -208,7 +208,7 @@ async function reveal() {
   height: 36px;
   border: 0;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--surface-2);
 }
 .goal {
   display: flex;
@@ -225,7 +225,7 @@ async function reveal() {
   background: #fff;
 }
 .turn.b {
-  background: #2d1060;
+  background: #1b1814;
 }
 .coach {
   display: flex;
@@ -239,13 +239,13 @@ async function reveal() {
   margin: 0;
   padding: 14px 16px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #2c1263;
+  background: var(--bubble-bg);
+  color: var(--bubble-ink);
   font-weight: 700;
   line-height: 1.5;
 }
 .bubble.lesson-text :deep(strong) {
-  color: #c2187a;
+  color: var(--bubble-strong);
 }
 .actions {
   display: flex;

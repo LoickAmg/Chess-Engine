@@ -227,7 +227,7 @@ h1 {
   flex: 1;
   height: 6px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface-2);
   overflow: hidden;
 }
 .bar span {
@@ -249,7 +249,7 @@ h1 {
   gap: 8px;
   padding: 20px;
   border-radius: 18px;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--surface-2);
   font-weight: 700;
   color: var(--text-2);
 }
@@ -275,7 +275,7 @@ h1 {
   height: 60px;
   border: 0;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--surface-2);
   box-shadow: inset 0 0 0 1px var(--line-strong);
   font-family: var(--font-display);
   font-size: 26px;
@@ -284,7 +284,7 @@ h1 {
   transition: background 0.15s, transform 0.15s var(--spring);
 }
 .answer:hover {
-  background: rgba(50, 224, 255, 0.18);
+  background: color-mix(in srgb, var(--accent-2) 18%, transparent);
   transform: translateY(-2px);
 }
 .modes {
@@ -300,7 +300,7 @@ h1 {
   padding: 16px;
   border: 0;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--surface-2);
   box-shadow: inset 0 0 0 1px var(--line);
   text-align: left;
   color: var(--cyan);
@@ -308,7 +308,7 @@ h1 {
 }
 .mode:hover {
   transform: translateX(4px);
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface-2);
 }
 .mode :first-child {
   grid-row: span 2;
@@ -358,7 +358,7 @@ h1 {
   cursor: pointer;
 }
 .side-pick .chip.on {
-  background: rgba(50, 224, 255, 0.2);
+  background: color-mix(in srgb, var(--accent-2) 20%, transparent);
   color: var(--cyan);
 }
 </style>

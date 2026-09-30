@@ -364,10 +364,10 @@ const instruction = computed(() => {
   height: 36px;
   border: 0;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--surface-2);
 }
 .icon-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--surface-2);
 }
 .titles h1 {
   font-size: 24px;
@@ -385,14 +385,14 @@ const instruction = computed(() => {
   flex: 1;
   height: 6px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface-2);
   transition: background 0.3s;
 }
 .dots span.on {
   background: var(--grad);
 }
 .dots span.cur:not(.on) {
-  background: rgba(255, 79, 163, 0.45);
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 .body {
   flex: 1;
@@ -413,18 +413,18 @@ const instruction = computed(() => {
   margin: 0;
   padding: 14px 16px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #2c1263;
+  background: var(--bubble-bg);
+  color: var(--bubble-ink);
   font-size: 15px;
   font-weight: 600;
   line-height: 1.55;
-  box-shadow: 0 10px 30px rgba(10, 0, 30, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
 }
 .bubble.lesson-text :deep(strong) {
-  color: #c2187a;
+  color: var(--bubble-strong);
 }
 .bubble.lesson-text :deep(em) {
-  color: #0e7fa6;
+  color: var(--accent-2);
 }
 .bubble::before {
   content: "";
@@ -459,14 +459,14 @@ const instruction = computed(() => {
   padding: 11px 14px;
   border: 0;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--surface-2);
   box-shadow: inset 0 0 0 1px var(--line);
   text-align: left;
   font-weight: 700;
   transition: background 0.2s, transform 0.2s var(--spring), box-shadow 0.2s;
 }
 .choice:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--surface-2);
   transform: translateX(4px);
 }
 .choice:disabled {
@@ -478,16 +478,16 @@ const instruction = computed(() => {
   width: 28px;
   height: 28px;
   border-radius: 9px;
-  background: rgba(155, 107, 255, 0.35);
+  background: color-mix(in srgb, var(--accent-3) 35%, transparent);
   font-family: var(--font-display);
   font-size: 14px;
 }
 .choice.right {
-  background: rgba(69, 227, 160, 0.22);
+  background: color-mix(in srgb, var(--good) 22%, transparent);
   box-shadow: inset 0 0 0 2px var(--green);
 }
 .choice.wrong {
-  background: rgba(255, 93, 115, 0.2);
+  background: color-mix(in srgb, var(--bad) 20%, transparent);
   box-shadow: inset 0 0 0 2px var(--red);
   animation: shake 0.4s;
 }
@@ -507,16 +507,16 @@ const instruction = computed(() => {
   line-height: 1.5;
 }
 .feedback.good {
-  background: rgba(69, 227, 160, 0.16);
-  box-shadow: inset 0 0 0 1px rgba(69, 227, 160, 0.5);
+  background: color-mix(in srgb, var(--good) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--good) 50%, transparent);
 }
 .feedback.bad {
-  background: rgba(255, 93, 115, 0.16);
-  box-shadow: inset 0 0 0 1px rgba(255, 93, 115, 0.5);
+  background: color-mix(in srgb, var(--bad) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--bad) 50%, transparent);
 }
 .feedback.info {
-  background: rgba(255, 209, 102, 0.14);
-  box-shadow: inset 0 0 0 1px rgba(255, 209, 102, 0.45);
+  background: color-mix(in srgb, var(--highlight) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--highlight) 45%, transparent);
 }
 .actions {
   display: flex;

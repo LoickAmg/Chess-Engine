@@ -83,15 +83,13 @@ h1 {
   border-color: var(--line-strong);
 }
 .card.done {
-  border-color: rgba(69, 227, 160, 0.45);
+  border-color: color-mix(in srgb, var(--good) 45%, transparent);
 }
 .mini {
   pointer-events: none;
 }
-.mini :deep(.frame) {
-  animation: none;
-  padding: 5px;
-  border-width: 2px;
+.mini :deep(.board-wrap) {
+  --frame-pad: 6px;
   border-radius: 14px;
 }
 h3 {
@@ -113,6 +111,6 @@ h3 {
   height: 26px;
   border-radius: 50%;
   background: var(--green);
-  color: #06301f;
+  color: #ffffff;
 }
 </style>

@@ -21,9 +21,9 @@ const PIECES = ["p", "n", "b", "r", "q", "k"];
   display: grid;
   place-items: center;
   border-radius: 30%;
-  background: linear-gradient(145deg, rgba(255, 79, 163, 0.25), rgba(155, 107, 255, 0.25));
-  box-shadow: inset 0 0 0 1px rgba(255, 170, 220, 0.3);
-  color: #ffd1ea;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 25%, transparent), color-mix(in srgb, var(--accent-3) 25%, transparent));
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  color: var(--ink);
 }
 .lesson-icon :deep(.piece) {
   width: 82%;

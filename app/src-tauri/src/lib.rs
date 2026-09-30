@@ -194,5 +194,5 @@ pub fn run() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![position, play, engine_reply, hint, review])
         .run(tauri::generate_context!())
-        .expect("impossible de démarrer Chess Académie");
+        .expect("impossible de démarrer Chess Academy");
 }

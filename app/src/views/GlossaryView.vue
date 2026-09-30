@@ -83,7 +83,7 @@ h1 {
   height: 64px;
   padding: 4px;
   border-radius: 16px;
-  background: linear-gradient(145deg, #6a3fc9, #3a1f86);
+  background: linear-gradient(145deg, var(--surface-2), var(--surface-2));
 }
 h3 {
   font-size: 18px;
@@ -95,7 +95,7 @@ h3 {
   height: 24px;
   margin-left: 4px;
   border-radius: 7px;
-  background: rgba(50, 224, 255, 0.18);
+  background: color-mix(in srgb, var(--accent-2) 18%, transparent);
   color: var(--cyan);
   font-size: 14px;
 }

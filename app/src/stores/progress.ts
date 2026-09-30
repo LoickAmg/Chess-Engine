@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import type { BoardId, PieceSetId, ThemeId } from "@/lib/themes";
 
 // Progression de l'élève, gardée dans le navigateur intégré (localStorage) : leçons
 // terminées, puzzles résolus, records d'entraînement, parties jouées, réglages.
@@ -18,7 +19,15 @@ interface Saved {
   puzzles: Record<string, { solved: boolean; tries: number }>;
   coordsBest: Record<string, number>;
   games: GameRecord[];
-  settings: { sound: boolean; coords: boolean; coachTalk: boolean; level: number };
+  settings: {
+    sound: boolean;
+    coords: boolean;
+    coachTalk: boolean;
+    level: number;
+    theme: ThemeId;
+    board: BoardId;
+    pieces: PieceSetId;
+  };
 }
 
 function load(): Saved {
@@ -27,7 +36,7 @@ function load(): Saved {
     puzzles: {},
     coordsBest: {},
     games: [],
-    settings: { sound: true, coords: true, coachTalk: true, level: 2 },
+    settings: { sound: true, coords: true, coachTalk: true, level: 2, theme: "classic", board: "wood", pieces: "staunton" },
   };
   try {
     const raw = localStorage.getItem(KEY);

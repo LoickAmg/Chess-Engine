@@ -3,9 +3,10 @@ import { computed, watch } from "vue";
 import { setSoundEnabled } from "@/lib/sound";
 import { useProgressStore } from "@/stores/progress";
 import { useUiStore } from "@/stores/ui";
-import CosmosBackground from "@/components/CosmosBackground.vue";
 import Icon from "@/components/Icon.vue";
 import PieceDefs from "@/components/PieceDefs.vue";
+import ThemeBackground from "@/components/ThemeBackground.vue";
+import AppearanceView from "@/views/AppearanceView.vue";
 import CoordsView from "@/views/CoordsView.vue";
 import GlossaryView from "@/views/GlossaryView.vue";
 import HomeView from "@/views/HomeView.vue";
@@ -21,6 +22,13 @@ const progress = useProgressStore();
 watch(
   () => progress.settings.sound,
   (on) => setSoundEnabled(on),
+  { immediate: true },
+);
+
+// Le thème est porté par <html data-theme="…"> : toute la feuille de styles en dépend.
+watch(
+  () => progress.settings.theme,
+  (theme) => (document.documentElement.dataset.theme = theme),
   { immediate: true },
 );
 
@@ -43,11 +51,11 @@ const section = computed(() => {
 
 <template>
   <PieceDefs />
-  <CosmosBackground />
+  <ThemeBackground />
   <div class="app">
     <nav class="rail" aria-label="Navigation principale">
-      <button type="button" class="brand" title="Accueil" @click="ui.go({ name: 'home' })">
-        <img src="/logo.png" alt="" />
+      <button type="button" class="brand" title="Chess Academy" @click="ui.go({ name: 'home' })">
+        <img src="/logo.png" alt="Chess Academy" />
       </button>
       <button
         v-for="item in NAV"
@@ -57,17 +65,21 @@ const section = computed(() => {
         :class="{ active: section === item.name }"
         @click="ui.go({ name: item.name })"
       >
-        <Icon :name="item.icon" :size="22" />
+        <Icon :name="item.icon" :size="21" />
         <span>{{ item.label }}</span>
       </button>
       <div class="rail-foot">
+        <button type="button" class="rail-item" :class="{ active: section === 'appearance' }" @click="ui.go({ name: 'appearance' })">
+          <Icon name="palette" :size="21" />
+          <span>Apparence</span>
+        </button>
         <button
           type="button"
           class="rail-item small"
           :title="progress.settings.sound ? 'Couper le son' : 'Activer le son'"
           @click="progress.setSetting('sound', !progress.settings.sound)"
         >
-          <Icon :name="progress.settings.sound ? 'sound' : 'mute'" :size="20" />
+          <Icon :name="progress.settings.sound ? 'sound' : 'mute'" :size="19" />
         </button>
       </div>
     </nav>
@@ -82,6 +94,7 @@ const section = computed(() => {
         <PuzzleView v-else-if="ui.route.name === 'puzzle'" :id="ui.route.id" :key="`puzzle-${ui.route.id}`" />
         <CoordsView v-else-if="ui.route.name === 'coords'" key="coords" />
         <GlossaryView v-else-if="ui.route.name === 'glossary'" key="glossary" />
+        <AppearanceView v-else-if="ui.route.name === 'appearance'" key="appearance" />
       </Transition>
     </main>
 
@@ -97,70 +110,116 @@ const section = computed(() => {
   z-index: 1;
   height: 100%;
   display: grid;
-  grid-template-columns: 92px 1fr;
+  grid-template-columns: 96px 1fr;
 }
 .rail {
+  --rail-bg: #16130f;
+  --rail-ink: rgba(244, 239, 230, 0.55);
+  --rail-ink-on: #f4efe6;
+  --rail-mark: #c9a96a;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 16px 0 14px;
-  background: linear-gradient(180deg, rgba(20, 6, 52, 0.85), rgba(10, 2, 30, 0.9));
-  border-right: 1px solid var(--line);
-  backdrop-filter: blur(16px);
+  gap: 4px;
+  padding: 18px 0 14px;
+  background: var(--rail-bg);
+  box-shadow: 1px 0 0 rgba(201, 169, 106, 0.25);
+}
+:global([data-theme="persona5"] .rail) {
+  --rail-bg: #0b0b0b;
+  --rail-ink: rgba(255, 255, 255, 0.6);
+  --rail-ink-on: #ffffff;
+  --rail-mark: #e0001b;
+  box-shadow: 3px 0 0 #e0001b;
+}
+:global([data-theme="persona3"] .rail) {
+  --rail-bg: rgba(3, 11, 36, 0.92);
+  --rail-ink: rgba(200, 225, 255, 0.55);
+  --rail-ink-on: #ffffff;
+  --rail-mark: #3fe0ff;
+  box-shadow: 1px 0 0 rgba(63, 224, 255, 0.3);
+}
+:global([data-theme="sumi"] .rail) {
+  --rail-bg: rgba(233, 222, 199, 0.92);
+  --rail-ink: rgba(27, 27, 27, 0.5);
+  --rail-ink-on: #1b1b1b;
+  --rail-mark: #b8321f;
+  box-shadow: 1px 0 0 rgba(27, 27, 27, 0.2);
 }
 .brand {
-  width: 56px;
-  height: 56px;
-  margin-bottom: 14px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 18px;
   padding: 0;
   border: 0;
   background: none;
   transition: transform 0.3s var(--spring);
 }
 .brand:hover {
-  transform: rotate(-6deg) scale(1.06);
+  transform: scale(1.05);
 }
 .brand img {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 6px 14px rgba(255, 79, 163, 0.35));
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 .rail-item {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  width: 74px;
+  gap: 5px;
+  width: 80px;
   padding: 10px 0 8px;
   border: 0;
-  border-radius: 16px;
   background: none;
-  color: var(--text-3);
-  font-family: var(--font-display);
-  font-size: 12.5px;
-  font-weight: 500;
-  transition: color 0.2s, background 0.2s, transform 0.2s var(--spring);
+  color: var(--rail-ink);
+  font-family: var(--font);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color 0.2s, background 0.2s;
 }
 .rail-item:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--rail-ink-on);
 }
 .rail-item.active {
-  color: #fff;
-  background: linear-gradient(160deg, rgba(255, 79, 163, 0.28), rgba(50, 224, 255, 0.16));
-  box-shadow: inset 0 0 0 1px rgba(255, 150, 210, 0.35), 0 6px 20px rgba(255, 79, 163, 0.18);
+  color: var(--rail-ink-on);
 }
 .rail-item.active::before {
   content: "";
   position: absolute;
-  left: -9px;
-  top: 22%;
-  bottom: 22%;
-  width: 4px;
-  border-radius: 4px;
-  background: var(--grad);
+  left: -8px;
+  top: 20%;
+  bottom: 20%;
+  width: 3px;
+  background: var(--rail-mark);
+}
+:global([data-theme="persona5"] .rail-item.active) {
+  background: #e0001b;
+  clip-path: polygon(0 8%, 100% 0, 94% 100%, 4% 92%);
+}
+:global([data-theme="persona5"] .rail-item.active::before) {
+  display: none;
+}
+:global([data-theme="persona3"] .rail-item.active) {
+  background: #fff;
+  color: #061640;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+:global([data-theme="persona3"] .rail-item.active::before) {
+  display: none;
+}
+:global([data-theme="sumi"] .rail-item.active::before) {
+  left: auto;
+  right: 6px;
+  top: 10px;
+  bottom: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  transform: rotate(8deg);
 }
 .rail-item.small {
   width: 48px;
@@ -168,6 +227,10 @@ const section = computed(() => {
 }
 .rail-foot {
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 .main {
   position: relative;
@@ -181,11 +244,11 @@ const section = computed(() => {
 }
 .page-enter-from {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(12px);
 }
 .page-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 .toast {
   position: fixed;
@@ -194,15 +257,15 @@ const section = computed(() => {
   z-index: 90;
   transform: translateX(-50%);
   padding: 12px 22px;
-  border-radius: 14px;
-  background: var(--panel-strong);
-  border: 1px solid var(--line-strong);
-  box-shadow: var(--shadow);
-  font-family: var(--font-display);
+  border-radius: var(--radius);
+  background: var(--surface-solid);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px var(--line-strong), var(--shadow);
   font-weight: 600;
 }
 .toast.win {
-  background: linear-gradient(120deg, rgba(255, 79, 163, 0.95), rgba(155, 107, 255, 0.95));
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 .toast-enter-active,
 .toast-leave-active {

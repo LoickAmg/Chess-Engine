@@ -88,8 +88,8 @@ h1 {
   border-radius: 50%;
   background:
     radial-gradient(circle, var(--bg-1) 60%, transparent 61%),
-    conic-gradient(var(--pink), var(--cyan) calc(var(--p) * 360deg), rgba(255, 255, 255, 0.08) 0);
-  box-shadow: 0 0 30px rgba(255, 79, 163, 0.25);
+    conic-gradient(var(--pink), var(--cyan) calc(var(--p) * 360deg), var(--surface-2) 0);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 .ring strong {
   font-family: var(--font-display);
@@ -142,11 +142,11 @@ h2 small {
   border-color: var(--line-strong);
 }
 .card.done {
-  border-color: rgba(69, 227, 160, 0.4);
+  border-color: color-mix(in srgb, var(--good) 40%, transparent);
 }
 .card.next {
-  border-color: rgba(255, 79, 163, 0.6);
-  box-shadow: var(--shadow), 0 0 24px rgba(255, 79, 163, 0.25);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  box-shadow: var(--shadow), 0 0 24px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 .info {
   min-width: 0;
@@ -170,13 +170,13 @@ h3 {
   height: 24px;
   border-radius: 50%;
   background: var(--green);
-  color: #06301f;
+  color: #ffffff;
 }
 .next-chip {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(255, 79, 163, 0.25);
-  color: #ffd1ea;
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+  color: var(--ink);
 }
 </style>

@@ -4,7 +4,7 @@ import { halfmoveClock, repetitionKey, START_FEN, type Color } from "@/lib/chess
 import { sfx } from "@/lib/sound";
 import { useProgressStore } from "./progress";
 
-// Partie contre Lumi : l'historique est une suite de positions FEN ; le moteur (Rust)
+// Partie contre Academy : l'historique est une suite de positions FEN ; le moteur (Rust)
 // fournit les coups légaux, joue ses réponses et analyse chaque coup de l'élève.
 
 export interface Ply {
@@ -177,7 +177,7 @@ export const useGameStore = defineStore("game", {
     async undo() {
       if (this.thinking || !this.plies.length) return;
       this.token++;
-      // Retire la réponse de Lumi puis ton dernier coup.
+      // Retire la réponse de Academy puis ton dernier coup.
       if (this.plies[this.plies.length - 1].by === "lumi") this.plies.pop();
       if (this.plies.length && this.plies[this.plies.length - 1].by === "you") this.plies.pop();
       const fen = this.plies[this.plies.length - 1]?.fen ?? START_FEN;

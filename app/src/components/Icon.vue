@@ -48,6 +48,7 @@ const PATHS: Record<string, string> = {
   kings: "M7 20.5v-6M17 20.5v-6M4.5 14.5h5M14.5 14.5h5M7 8.5v-4M5.5 6h3M17 8.5v-4M15.5 6h3M5 14.5a2 3 0 0 1 4 0M15 14.5a2 3 0 0 1 4 0",
   square: "M5 5h14v14H5zM5 5l14 14",
   sparkle: "M12 3.5 13.8 10.2 20.5 12l-6.7 1.8L12 20.5l-1.8-6.7L3.5 12l6.7-1.8Z",
+  palette: "M12 3.5a8.5 8.5 0 1 0 0 17c1.3 0 1.8-1 1.3-2.1-.6-1.2.2-2.4 1.5-2.4h1.9a3.8 3.8 0 0 0 3.8-3.8C20.5 7 16.7 3.5 12 3.5ZM7.5 12h.01M9.5 8h.01M14.5 8h.01M16.5 11.5h.01",
 };
 const FILLED = new Set(["play", "star", "sparkle"]);
 </script>

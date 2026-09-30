@@ -17,16 +17,16 @@ const solved = computed(() => PUZZLES.filter((p) => progress.puzzleSolved(p.id))
 const tip = TIPS[Math.floor(Date.now() / 86_400_000) % TIPS.length];
 
 const greeting = computed(() => {
-  if (doneCount.value === 0) return "Salut ! Je suis Lumi. Je vais t'apprendre les échecs, pas à pas. Prêt(e) pour ta première leçon ?";
-  if (!nextLesson.value) return "Tu as terminé toutes mes leçons ! Il est temps de me défier en partie.";
-  return `Content de te revoir ! Prochaine étape : « ${nextLesson.value.title} ».`;
+  if (doneCount.value === 0) return "Bienvenue. Je suis Academy, ton professeur. Nous apprendrons les échecs pas à pas, des premières règles jusqu'aux finales.";
+  if (!nextLesson.value) return "Tu as terminé toutes mes leçons. Il est temps de me défier en partie.";
+  return `Content de te revoir. Prochaine leçon : « ${nextLesson.value.title} ».`;
 });
 
 const MODES = [
-  { name: "lessons", title: "Leçons", icon: "book", desc: "Les règles, les pièces, les tactiques et les finales, avec des exercices.", tone: "pink" },
-  { name: "play", title: "Jouer contre Lumi", icon: "swords", desc: "Une vraie partie : je commente tes coups et je t'aide si tu veux.", tone: "violet" },
-  { name: "puzzles", title: "Puzzles", icon: "puzzle", desc: "Trouve le coup gagnant : mats, fourchettes, clouages…", tone: "cyan" },
-  { name: "coords", title: "Entraînement aux cases", icon: "target", desc: "Apprends le nom des cases contre la montre.", tone: "gold" },
+  { name: "lessons", num: "I", title: "Leçons", icon: "book", desc: "Règles, pièces, tactiques et finales, avec des exercices sur l'échiquier." },
+  { name: "play", num: "II", title: "Partie commentée", icon: "swords", desc: "Joue contre Academy : chaque coup est analysé et expliqué." },
+  { name: "puzzles", num: "III", title: "Puzzles", icon: "puzzle", desc: "Trouve le coup gagnant : mats, fourchettes, clouages…" },
+  { name: "coords", num: "IV", title: "Les cases", icon: "target", desc: "Apprends le nom des 64 cases contre la montre." },
 ] as const;
 </script>
 
@@ -34,67 +34,63 @@ const MODES = [
   <div class="home">
     <section class="hero">
       <div class="hero-text">
-        <p class="eyebrow">Ton professeur d'échecs</p>
-        <h1>Chess <span class="grad-text">Académie</span></h1>
+        <p class="eyebrow">Académie d'échecs · Ton professeur personnel</p>
+        <h1 class="title">
+          <span class="t1">Chess</span>
+          <span class="t2">Academy</span>
+        </h1>
+        <div class="rule" />
         <div class="coach">
-          <Mascot :size="92" :mood="doneCount ? 'happy' : 'wow'" />
-          <p class="bubble">{{ greeting }}</p>
+          <Mascot :size="64" :mood="doneCount ? 'happy' : 'wow'" />
+          <p class="quote">{{ greeting }}</p>
         </div>
         <div class="cta">
           <button v-if="nextLesson" type="button" class="btn btn-primary" @click="ui.go({ name: 'lesson', id: nextLesson.id })">
-            <Icon name="play" :size="16" />
-            {{ doneCount ? "Continuer" : "Commencer" }} : {{ nextLesson.title }}
+            <Icon name="play" :size="14" />
+            {{ doneCount ? "Continuer" : "Commencer" }}
           </button>
-          <button type="button" class="btn btn-ghost" @click="ui.go({ name: 'play' })">
-            <Icon name="swords" :size="18" /> Jouer une partie
-          </button>
+          <button type="button" class="btn btn-ghost" @click="ui.go({ name: 'play' })">Jouer une partie</button>
         </div>
-        <div class="stats">
-          <div class="stat">
-            <strong>{{ doneCount }}<small>/{{ LESSONS.length }}</small></strong>
-            <span>leçons</span>
+        <dl class="stats">
+          <div>
+            <dt>Leçons</dt>
+            <dd>{{ doneCount }}<small>/{{ LESSONS.length }}</small></dd>
           </div>
-          <div class="stat">
-            <strong>{{ solved }}<small>/{{ PUZZLES.length }}</small></strong>
-            <span>puzzles</span>
+          <div>
+            <dt>Puzzles</dt>
+            <dd>{{ solved }}<small>/{{ PUZZLES.length }}</small></dd>
           </div>
-          <div class="stat">
-            <strong>{{ progress.wins }}</strong>
-            <span>victoires</span>
+          <div>
+            <dt>Victoires</dt>
+            <dd>{{ progress.wins }}</dd>
           </div>
-          <div class="stat">
-            <strong>{{ progress.coordsBest.find ?? 0 }}</strong>
-            <span>record cases</span>
+          <div>
+            <dt>Record cases</dt>
+            <dd>{{ progress.coordsBest.find ?? 0 }}</dd>
           </div>
-        </div>
+        </dl>
       </div>
       <div class="hero-board" aria-hidden="true">
-        <div class="tilt">
-          <ChessBoard :fen="START_FEN" :show-coords="false" />
+        <div class="stage">
+          <ChessBoard :fen="START_FEN" :show-coords="true" />
         </div>
       </div>
     </section>
 
     <section class="modes">
-      <button
-        v-for="(m, i) in MODES"
-        :key="m.name"
-        type="button"
-        class="mode glass"
-        :class="m.tone"
-        :style="{ animationDelay: `${i * 70}ms` }"
-        @click="ui.go({ name: m.name })"
-      >
-        <span class="mode-icon"><Icon :name="m.icon" :size="26" /></span>
-        <h3>{{ m.title }}</h3>
-        <p>{{ m.desc }}</p>
-        <span class="go"><Icon name="next" :size="18" /></span>
+      <button v-for="(m, i) in MODES" :key="m.name" type="button" class="mode" :style="{ animationDelay: `${i * 70}ms` }" @click="ui.go({ name: m.name })">
+        <span class="num">{{ m.num }}</span>
+        <span class="mode-body">
+          <strong>{{ m.title }}</strong>
+          <small>{{ m.desc }}</small>
+        </span>
+        <Icon name="next" :size="18" class="go" />
       </button>
     </section>
 
-    <section class="tip glass">
-      <Icon name="bulb" :size="22" />
-      <p><strong>Astuce du jour :</strong> {{ tip }}</p>
+    <section class="tip">
+      <span class="tip-label">Conseil du jour</span>
+      <p>{{ tip }}</p>
     </section>
   </div>
 </template>
@@ -103,193 +99,238 @@ const MODES = [
 .home {
   height: 100%;
   overflow-y: auto;
-  padding: 36px 48px 40px;
+  padding: 44px 56px 44px;
 }
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 56px;
   align-items: center;
 }
-h1 {
-  margin: 6px 0 18px;
-  font-size: clamp(44px, 5.2vw, 72px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  text-shadow: 0 6px 30px rgba(255, 79, 163, 0.25);
+.title {
+  display: flex;
+  flex-direction: column;
+  margin: 14px 0 0;
+  font-size: clamp(56px, 7vw, 104px);
+  line-height: 0.92;
+}
+.t2 {
+  font-style: italic;
+  color: var(--accent-2);
+}
+.rule {
+  width: 96px;
+  height: 2px;
+  margin: 26px 0 24px;
+  background: var(--accent-2);
 }
 .coach {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
+  gap: 16px;
+  max-width: 560px;
 }
-.bubble {
-  position: relative;
+.quote {
   margin: 0;
-  max-width: 460px;
-  padding: 14px 18px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #2c1263;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-style: italic;
   line-height: 1.45;
-  box-shadow: 0 10px 30px rgba(10, 0, 30, 0.45);
-  animation: pop-in 0.5s var(--spring) 0.15s both;
-}
-.bubble::before {
-  content: "";
-  position: absolute;
-  left: -8px;
-  top: 50%;
-  width: 16px;
-  height: 16px;
-  background: inherit;
-  transform: translateY(-50%) rotate(45deg);
-  border-radius: 3px;
+  color: var(--ink);
 }
 .cta {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
+  margin-top: 30px;
 }
 .stats {
   display: flex;
-  gap: 12px;
-  margin-top: 26px;
+  margin: 38px 0 0;
+  border-top: 1px solid var(--line-strong);
 }
-.stat {
-  display: flex;
-  flex-direction: column;
-  min-width: 96px;
-  padding: 10px 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 0 0 1px var(--line);
+.stats > div {
+  flex: 1;
+  padding: 14px 16px 0 0;
 }
-.stat strong {
+.stats > div + div {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+dt {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+dd {
+  margin: 4px 0 0;
   font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 600;
-  line-height: 1.1;
+  font-size: 38px;
+  line-height: 1;
 }
-.stat small {
-  font-size: 15px;
-  color: var(--text-3);
-}
-.stat span {
-  font-size: 12.5px;
-  color: var(--text-2);
+dd small {
+  font-size: 18px;
+  color: var(--ink-3);
 }
 .hero-board {
-  perspective: 1400px;
   display: grid;
   place-items: center;
 }
-.tilt {
-  width: min(100%, 420px);
-  transform: rotateX(24deg) rotateZ(-8deg);
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 40px 40px rgba(0, 0, 0, 0.45));
-  animation: showcase 9s ease-in-out infinite;
+.stage {
+  width: min(100%, 520px);
+  animation: settle 0.9s var(--ease) both;
 }
-@keyframes showcase {
-  50% {
-    transform: rotateX(18deg) rotateZ(-3deg) translateY(-10px);
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
   }
 }
+
 .modes {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 34px;
+  margin-top: 52px;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
 }
 .mode {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  min-height: 190px;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: start;
+  padding: 22px 20px;
+  border: 0;
+  background: none;
   text-align: left;
-  overflow: hidden;
-  animation: pop-in 0.5s var(--spring) both;
-  transition: transform 0.25s var(--spring), box-shadow 0.25s;
+  animation: pop-in 0.5s var(--ease) both;
+  transition: background 0.25s;
+}
+.mode + .mode {
+  border-left: 1px solid var(--line);
 }
 .mode:hover {
-  transform: translateY(-6px);
+  background: var(--surface);
 }
-.mode::after {
-  content: "";
-  position: absolute;
-  right: -40px;
-  top: -40px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: var(--tone);
-  opacity: 0.2;
-  filter: blur(20px);
-  transition: opacity 0.3s;
+.num {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--accent-2);
 }
-.mode:hover::after {
-  opacity: 0.4;
+.mode-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-.mode.pink {
-  --tone: var(--pink);
+.mode strong {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: var(--display-weight);
+  font-style: var(--display-style);
+  text-transform: var(--display-transform);
+  line-height: 1.1;
 }
-.mode.violet {
-  --tone: var(--violet);
-}
-.mode.cyan {
-  --tone: var(--cyan);
-}
-.mode.gold {
-  --tone: var(--gold);
-}
-.mode-icon {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 8px;
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--tone) 22%, transparent);
-  color: var(--tone);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone) 45%, transparent);
-}
-.mode h3 {
-  font-size: 19px;
-}
-.mode p {
-  margin: 0;
-  font-size: 13.5px;
-  color: var(--text-2);
-  line-height: 1.45;
+.mode small {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
 }
 .go {
-  margin-top: auto;
-  align-self: flex-end;
-  color: var(--tone);
+  margin-top: 4px;
+  color: var(--ink-3);
+  transition: transform 0.2s, color 0.2s;
+}
+.mode:hover .go {
+  color: var(--accent);
+  transform: translateX(3px);
 }
 .tip {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 18px;
-  padding: 16px 20px;
-  color: var(--gold);
+  align-items: baseline;
+  gap: 18px;
+  margin-top: 26px;
+}
+.tip-label {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-2);
 }
 .tip p {
   margin: 0;
-  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-style: italic;
 }
-.tip strong {
-  color: var(--gold);
+
+/* ---- variantes de thème */
+:global([data-theme="persona5"] .home .title .t1) {
+  color: #fff;
+  -webkit-text-stroke: 0;
 }
+:global([data-theme="persona5"] .home .title .t2) {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0 18px;
+  font-style: normal;
+  color: #0b0b0b;
+  background: #fff;
+  transform: rotate(-4deg) skewX(-8deg);
+  box-shadow: 8px 8px 0 #e0001b;
+}
+:global([data-theme="persona5"] .home .rule),
+:global([data-theme="persona3"] .home .rule) {
+  height: 4px;
+  transform: skewX(-30deg);
+}
+:global([data-theme="persona5"] .home .quote),
+:global([data-theme="persona3"] .home .quote),
+:global([data-theme="persona5"] .home .tip p),
+:global([data-theme="persona3"] .home .tip p) {
+  font-family: var(--font);
+  font-style: normal;
+  font-size: 17px;
+  font-weight: 600;
+}
+:global([data-theme="persona5"] .home .mode:hover) {
+  background: #e0001b;
+}
+:global([data-theme="persona3"] .home .title .t2) {
+  color: var(--accent-2);
+  text-shadow: 0 0 30px rgba(63, 224, 255, 0.45);
+}
+:global([data-theme="sumi"] .home .title) {
+  font-family: "Yuji Syuku", serif;
+  font-weight: 400;
+}
+:global([data-theme="sumi"] .home .title .t2) {
+  font-style: normal;
+  color: var(--accent);
+}
+:global([data-theme="sumi"] .home .rule) {
+  height: 6px;
+  width: 140px;
+  border-radius: 3px;
+  background: #1b1b1b;
+  -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+  mask-image: linear-gradient(90deg, #000 60%, transparent);
+}
+:global([data-theme="sumi"] .home .mode) {
+  background: rgba(247, 241, 227, 0.72);
+}
+:global([data-theme="sumi"] .home .num) {
+  font-family: "Yuji Syuku", serif;
+  color: var(--accent);
+}
+
 @media (max-width: 1150px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
   .modes {
     grid-template-columns: repeat(2, 1fr);
   }

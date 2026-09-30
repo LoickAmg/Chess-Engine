@@ -125,7 +125,7 @@ const resultTitle = computed(() => {
 const resultText = computed(() => {
   const o = game.outcome;
   if (!o) return "";
-  if (o.result === "win") return "Bravo, tu m'as battue ! Essaie le niveau suivant quand tu te sens prêt(e).";
+  if (o.result === "win") return "Bravo, tu m'as battu ! Essaie le niveau suivant quand tu te sens prêt(e).";
   if (o.result === "loss") return "Ce n'est pas grave : chaque défaite t'apprend quelque chose. Regarde tes erreurs dans la liste des coups !";
   return "Match nul. Une partie bien défendue, c'est déjà une belle performance.";
 });
@@ -140,7 +140,7 @@ const resultText = computed(() => {
           <Mascot :size="96" mood="happy" />
           <div>
             <p class="eyebrow">Partie</p>
-            <h1>Jouer contre Lumi</h1>
+            <h1>Jouer contre Academy</h1>
             <p class="muted">Je joue contre toi et je commente chacun de tes coups, comme un vrai professeur.</p>
           </div>
         </div>
@@ -198,7 +198,7 @@ const resultText = computed(() => {
           <div class="player top">
             <Mascot :size="38" :mood="game.thinking ? 'think' : 'happy'" />
             <div>
-              <strong>Lumi</strong> <span class="chip">{{ levelInfo.name }}</span>
+              <strong>Academy</strong> <span class="chip">{{ levelInfo.name }}</span>
               <div class="captured">
                 <ChessPiece v-for="(k, i) in takenBy(game.you === 'w' ? 'b' : 'w')" :key="i" :kind="k" :color="game.you" class="cap" />
                 <span v-if="advantage(game.you === 'w' ? 'b' : 'w') > 0" class="adv">+{{ advantage(game.you === "w" ? "b" : "w") }}</span>
@@ -356,7 +356,7 @@ const resultText = computed(() => {
   padding: 12px;
   border: 0;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--surface-2);
   box-shadow: inset 0 0 0 1px var(--line);
   text-align: left;
   transition: transform 0.2s var(--spring), background 0.2s, box-shadow 0.2s;
@@ -365,8 +365,8 @@ const resultText = computed(() => {
   transform: translateY(-3px);
 }
 .level.on {
-  background: linear-gradient(160deg, rgba(255, 79, 163, 0.3), rgba(155, 107, 255, 0.25));
-  box-shadow: inset 0 0 0 2px var(--pink), 0 8px 24px rgba(255, 79, 163, 0.25);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 30%, transparent), color-mix(in srgb, var(--accent-3) 25%, transparent));
+  box-shadow: inset 0 0 0 2px var(--pink), 0 8px 24px color-mix(in srgb, var(--accent) 25%, transparent);
 }
 .level .stars {
   display: flex;
@@ -394,13 +394,13 @@ const resultText = computed(() => {
   padding: 8px 16px 8px 8px;
   border: 0;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--surface-2);
   box-shadow: inset 0 0 0 1px var(--line);
   font-weight: 700;
 }
 .color.on {
   box-shadow: inset 0 0 0 2px var(--cyan);
-  background: rgba(50, 224, 255, 0.12);
+  background: color-mix(in srgb, var(--accent-2) 12%, transparent);
 }
 .swatch {
   display: grid;
@@ -409,7 +409,7 @@ const resultText = computed(() => {
   height: 40px;
   padding: 4px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--surface-2);
 }
 .dice {
   font-family: var(--font-display);
@@ -432,7 +432,7 @@ const resultText = computed(() => {
   width: 48px;
   height: 28px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--surface-2);
   transition: background 0.2s;
 }
 .switch::after {
@@ -509,7 +509,7 @@ const resultText = computed(() => {
   height: 38px;
   padding: 3px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--surface-2);
 }
 .your-turn {
   margin-left: auto;
@@ -552,7 +552,7 @@ const resultText = computed(() => {
   height: min(70vh, 560px);
   border-radius: 10px;
   overflow: hidden;
-  background: #2a0f5c;
+  background: #1f1b17;
   box-shadow: inset 0 0 0 1px var(--line-strong);
 }
 .eval-fill {
@@ -560,7 +560,7 @@ const resultText = computed(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(0deg, #ffffff, #ffd6f0);
+  background: linear-gradient(0deg, #fdfbf6, #e6dccb);
   transition: height 0.6s var(--ease);
 }
 .eval.flip {
@@ -604,13 +604,13 @@ const resultText = computed(() => {
   margin: 0;
   padding: 12px 14px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #2c1263;
+  background: var(--bubble-bg);
+  color: var(--bubble-ink);
   font-weight: 700;
   line-height: 1.5;
 }
 .bubble.lesson-text :deep(strong) {
-  color: #c2187a;
+  color: var(--bubble-strong);
 }
 .quality {
   display: inline-flex;
@@ -622,27 +622,27 @@ const resultText = computed(() => {
   animation: pop-in 0.3s var(--spring);
 }
 .quality.gold {
-  background: rgba(255, 209, 102, 0.2);
+  background: color-mix(in srgb, var(--highlight) 20%, transparent);
   color: var(--gold);
 }
 .quality.green {
-  background: rgba(69, 227, 160, 0.18);
+  background: color-mix(in srgb, var(--good) 18%, transparent);
   color: var(--green);
 }
 .quality.cyan {
-  background: rgba(50, 224, 255, 0.16);
+  background: color-mix(in srgb, var(--accent-2) 16%, transparent);
   color: var(--cyan);
 }
 .quality.orange {
-  background: rgba(255, 159, 69, 0.18);
+  background: color-mix(in srgb, var(--warn) 18%, transparent);
   color: var(--orange);
 }
 .quality.pink {
-  background: rgba(255, 79, 163, 0.2);
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
   color: var(--pink);
 }
 .quality.red {
-  background: rgba(255, 93, 115, 0.22);
+  background: color-mix(in srgb, var(--bad) 22%, transparent);
   color: var(--red);
 }
 .msgs {
@@ -665,7 +665,7 @@ const resultText = computed(() => {
   margin: 14px 0;
   padding: 10px;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.18);
+  background: var(--surface-2);
   font-family: var(--font-display);
 }
 .moves .empty {
@@ -680,7 +680,7 @@ const resultText = computed(() => {
   border-radius: 8px;
 }
 .row:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
 }
 .n {
   color: var(--text-3);
@@ -706,6 +706,7 @@ const resultText = computed(() => {
 }
 .controls {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 .controls .btn:nth-child(-n + 2) {
@@ -719,7 +720,7 @@ const resultText = computed(() => {
   z-index: 50;
   display: grid;
   place-items: center;
-  background: rgba(8, 0, 24, 0.55);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
 }
 .result {
