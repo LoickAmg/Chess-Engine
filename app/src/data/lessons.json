@@ -1,0 +1,403 @@
+[
+  {
+    "id": "board",
+    "chapter": "Premiers pas",
+    "title": "L'échiquier",
+    "icon": "board",
+    "summary": "64 cases, des colonnes, des rangées et des diagonales.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "text": "Bienvenue ! Je suis **Lumi**, ta professeure d'échecs. On commence par le terrain de jeu : l'**échiquier**. Il compte **64 cases**, 8 × 8, qui alternent clair et foncé." },
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "highlights": [{ "sq": "e1", "kind": "info" }, { "sq": "e2", "kind": "info" }, { "sq": "e3", "kind": "info" }, { "sq": "e4", "kind": "info" }, { "sq": "e5", "kind": "info" }, { "sq": "e6", "kind": "info" }, { "sq": "e7", "kind": "info" }, { "sq": "e8", "kind": "info" }], "text": "Les lignes verticales s'appellent des **colonnes**. On les nomme avec une lettre, de *a* à *h*, de gauche à droite. Ici, c'est la **colonne e**." },
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "highlights": [{ "sq": "a4", "kind": "info" }, { "sq": "b4", "kind": "info" }, { "sq": "c4", "kind": "info" }, { "sq": "d4", "kind": "info" }, { "sq": "e4", "kind": "info" }, { "sq": "f4", "kind": "info" }, { "sq": "g4", "kind": "info" }, { "sq": "h4", "kind": "info" }], "text": "Les lignes horizontales sont les **rangées**, numérotées de *1* à *8*. Les Blancs commencent en bas (rangées 1 et 2), les Noirs en haut (rangées 7 et 8). Voici la **4e rangée**." },
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "highlights": [{ "sq": "a1", "kind": "info" }, { "sq": "b2", "kind": "info" }, { "sq": "c3", "kind": "info" }, { "sq": "d4", "kind": "info" }, { "sq": "e5", "kind": "info" }, { "sq": "f6", "kind": "info" }, { "sq": "g7", "kind": "info" }, { "sq": "h8", "kind": "info" }], "text": "Les lignes en biais sont les **diagonales**. Remarque : une diagonale garde **toujours la même couleur** de cases. Ce détail comptera beaucoup pour le fou !" },
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "highlights": [{ "sq": "h1", "kind": "focus" }], "text": "Astuce pour bien poser l'échiquier : il y a toujours une **case claire en bas à droite**. Retiens la formule « **blanc à droite** » !" },
+      { "type": "quiz", "text": "Petite vérification : combien de cases compte un échiquier ?", "choices": ["32", "64", "100"], "answer": 1, "explain": "8 colonnes × 8 rangées = 64 cases." }
+    ]
+  },
+  {
+    "id": "squares",
+    "chapter": "Premiers pas",
+    "title": "Le nom des cases",
+    "icon": "target",
+    "summary": "Chaque case a un nom : sa colonne puis sa rangée.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "highlights": [{ "sq": "e4", "kind": "focus" }], "text": "Chaque case a un nom unique : **la lettre de sa colonne, puis le chiffre de sa rangée**. La case qui brille est *e4* : colonne e, rangée 4. Comme à la bataille navale !" },
+      { "type": "text", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "squareNames": true, "text": "Voici le nom de toutes les cases. Pas besoin de tout apprendre par cœur : avec un peu d'entraînement, ça devient automatique." },
+      { "type": "square", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "targets": ["d4"], "text": "À toi ! Clique sur la case **d4**." },
+      { "type": "square", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "targets": ["a1"], "text": "Maintenant, clique sur **a1**, le coin en bas à gauche." },
+      { "type": "square", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "targets": ["h8"], "text": "Et le coin opposé, **h8** ?" },
+      { "type": "square", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "targets": ["f3"], "text": "Plus dur : trouve **f3**." },
+      { "type": "square", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "targets": ["c7"], "text": "Et **c7** ?" },
+      { "type": "quiz", "fen": "8/8/8/8/8/8/8/8 w - - 0 1", "highlights": [{ "sq": "c6", "kind": "focus" }], "text": "Comment s'appelle la case qui brille ?", "choices": ["c6", "f3", "c3", "f6"], "answer": 0, "explain": "Colonne c, 6e rangée : c6." },
+      { "type": "text", "text": "Bravo ! Pour devenir imbattable, le mode **Cases** te chronomètre : essaie de trouver 20 cases en 30 secondes." }
+    ]
+  },
+  {
+    "id": "setup",
+    "chapter": "Premiers pas",
+    "title": "La position de départ",
+    "icon": "setup",
+    "summary": "Où se placent les pièces au début de la partie.",
+    "steps": [
+      { "type": "text", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "text": "Voici la position de départ. Chaque camp a **16 pièces**. Les **pions** forment un mur sur la 2e rangée (Blancs) et la 7e (Noirs)." },
+      { "type": "text", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "highlights": [{ "sq": "a1", "kind": "info" }, { "sq": "h1", "kind": "info" }, { "sq": "b1", "kind": "good" }, { "sq": "g1", "kind": "good" }, { "sq": "c1", "kind": "focus" }, { "sq": "f1", "kind": "focus" }], "text": "Derrière les pions, de l'extérieur vers le centre : les **tours** dans les coins, puis les **cavaliers**, puis les **fous**." },
+      { "type": "text", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "highlights": [{ "sq": "d1", "kind": "focus" }, { "sq": "d8", "kind": "focus" }], "text": "Au centre, la **dame** et le **roi**. Règle d'or : **la dame se place sur sa couleur**. La dame blanche va sur la case claire *d1*, la dame noire sur la case foncée *d8*." },
+      { "type": "quiz", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "text": "Sur quelle case démarre le roi blanc ?", "choices": ["d1", "e1", "f1"], "answer": 1, "explain": "Le roi blanc démarre en e1, juste à côté de sa dame." },
+      { "type": "quiz", "text": "Qui joue le premier coup de la partie ?", "choices": ["Les Blancs", "Les Noirs", "On tire au sort"], "answer": 0, "explain": "Les Blancs commencent toujours. Ensuite, chacun joue un coup à tour de rôle." }
+    ]
+  },
+  {
+    "id": "rook",
+    "chapter": "Les pièces",
+    "title": "La tour",
+    "icon": "r",
+    "summary": "En ligne droite, aussi loin qu'elle veut.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/3R4/8/8/8 w - - 0 1", "arrows": [{ "from": "d4", "to": "d8" }, { "from": "d4", "to": "d1" }, { "from": "d4", "to": "a4" }, { "from": "d4", "to": "h4" }], "text": "La **tour** se déplace en **ligne droite**, horizontalement ou verticalement, d'autant de cases qu'elle veut. Elle ne peut jamais sauter par-dessus une autre pièce." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/8/R7 w - - 0 1", "stars": ["a7", "f7", "f2"], "text": "Attrape toutes les **étoiles** avec la tour ! Glisse-la ou clique dessus puis sur une case." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/8/7R w - - 0 1", "stars": ["h5", "b5", "b8", "g8", "g1"], "text": "Encore un parcours, en le moins de coups possible !" },
+      { "type": "move", "fen": "4k3/8/8/1n6/8/8/8/1R2K3 w - - 0 1", "accept": ["b1b5"], "text": "Pour **capturer**, une pièce va sur la case d'une pièce adverse et la retire du jeu. Capture le cavalier noir avec ta tour !", "success": "Bravo ! La tour a glissé jusqu'au cavalier et l'a capturé." },
+      { "type": "quiz", "fen": "8/8/8/8/3R4/8/8/8 w - - 0 1", "text": "Sur un échiquier vide, combien de cases la tour contrôle-t-elle ?", "choices": ["7", "14", "28"], "answer": 1, "explain": "7 cases sur sa colonne + 7 sur sa rangée = 14, où qu'elle soit !" }
+    ]
+  },
+  {
+    "id": "bishop",
+    "chapter": "Les pièces",
+    "title": "Le fou",
+    "icon": "b",
+    "summary": "En diagonale, toujours sur la même couleur.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/3B4/8/8/8 w - - 0 1", "arrows": [{ "from": "d4", "to": "h8" }, { "from": "d4", "to": "a7" }, { "from": "d4", "to": "a1" }, { "from": "d4", "to": "g1" }], "text": "Le **fou** se déplace en **diagonale**, d'autant de cases qu'il veut. Conséquence : il reste **toujours sur la même couleur** de cases." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/8/2B5 w - - 0 1", "stars": ["e3", "g5", "d8"], "text": "Attrape les étoiles avec le fou !" },
+      { "type": "quiz", "text": "Un fou qui commence sur une case foncée peut-il un jour atteindre une case claire ?", "choices": ["Oui", "Non, jamais"], "answer": 1, "explain": "Il ne quitte jamais sa couleur. C'est pour ça que chaque camp a un fou des cases claires et un fou des cases foncées." },
+      { "type": "move", "fen": "4k3/8/8/6r1/8/8/8/2B1K3 w - - 0 1", "accept": ["c1g5"], "text": "La tour noire est sur la même diagonale que ton fou. Capture-la !", "success": "Excellent : le fou traverse tout l'échiquier en un seul coup." }
+    ]
+  },
+  {
+    "id": "queen",
+    "chapter": "Les pièces",
+    "title": "La dame",
+    "icon": "q",
+    "summary": "La plus puissante : tour et fou réunis.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/3Q4/8/8/8 w - - 0 1", "arrows": [{ "from": "d4", "to": "d8" }, { "from": "d4", "to": "d1" }, { "from": "d4", "to": "a4" }, { "from": "d4", "to": "h4" }, { "from": "d4", "to": "h8" }, { "from": "d4", "to": "a7" }, { "from": "d4", "to": "a1" }, { "from": "d4", "to": "g1" }], "text": "La **dame** est la pièce la plus puissante : elle combine la **tour** et le **fou**. Elle va en ligne droite **et** en diagonale, aussi loin qu'elle veut." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/8/3Q4 w - - 0 1", "stars": ["d5", "a8", "h8", "h1"], "text": "Quatre étoiles, quatre coups : à toi de jouer !" },
+      { "type": "move", "fen": "r3k3/8/8/8/8/8/8/4K2Q w - - 0 1", "accept": ["h1a8"], "text": "Une tour noire traîne dans un coin. Trouve le coup de dame qui la capture.", "success": "Parfait ! Et en plus, ta dame met le roi noir en **échec** sur la 8e rangée." },
+      { "type": "text", "text": "Attention : parce qu'elle est précieuse, on évite de sortir la dame **trop tôt** dans la partie. Les pièces adverses la chasseraient en gagnant du temps." }
+    ]
+  },
+  {
+    "id": "king",
+    "chapter": "Les pièces",
+    "title": "Le roi",
+    "icon": "k",
+    "summary": "Une case dans toutes les directions, jamais sur une case attaquée.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/3K4/8/8/8 w - - 0 1", "highlights": [{ "sq": "c3", "kind": "info" }, { "sq": "c4", "kind": "info" }, { "sq": "c5", "kind": "info" }, { "sq": "d3", "kind": "info" }, { "sq": "d5", "kind": "info" }, { "sq": "e3", "kind": "info" }, { "sq": "e4", "kind": "info" }, { "sq": "e5", "kind": "info" }], "text": "Le **roi** est la pièce la plus importante… mais il est lent : **une seule case**, dans n'importe quelle direction." },
+      { "type": "text", "fen": "8/8/8/3k4/8/3K4/8/8 w - - 0 1", "highlights": [{ "sq": "c4", "kind": "bad" }, { "sq": "d4", "kind": "bad" }, { "sq": "e4", "kind": "bad" }], "text": "Règle essentielle : le roi n'a **jamais le droit** d'aller sur une case attaquée par l'adversaire. Les deux rois ne peuvent donc jamais être côte à côte : les cases rouges sont interdites aux deux." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/8/4K3 w - - 0 1", "stars": ["e2", "f3", "g3", "h4"], "text": "Fais marcher ton roi jusqu'aux étoiles, une case à la fois." },
+      { "type": "move", "fen": "4k3/8/8/8/8/8/3q4/4K3 w - - 0 1", "accept": ["e1d2"], "text": "La dame noire attaque ton roi, mais personne ne la protège. Que fais-tu ?", "success": "Bien vu ! Le roi peut capturer une pièce **non protégée** qui se trouve à côté de lui." }
+    ]
+  },
+  {
+    "id": "knight",
+    "chapter": "Les pièces",
+    "title": "Le cavalier",
+    "icon": "n",
+    "summary": "Le saut en L, par-dessus les autres pièces.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/3N4/8/8/8 w - - 0 1", "arrows": [{ "from": "d4", "to": "e6" }, { "from": "d4", "to": "f5" }, { "from": "d4", "to": "f3" }, { "from": "d4", "to": "e2" }, { "from": "d4", "to": "c2" }, { "from": "d4", "to": "b3" }, { "from": "d4", "to": "b5" }, { "from": "d4", "to": "c6" }], "text": "Le **cavalier** se déplace en **L** : deux cases dans une direction, puis une case sur le côté. C'est la seule pièce qui peut **sauter** par-dessus les autres !" },
+      { "type": "text", "fen": "8/8/8/8/3N4/8/8/8 w - - 0 1", "highlights": [{ "sq": "e6", "kind": "good" }, { "sq": "f5", "kind": "good" }, { "sq": "f3", "kind": "good" }, { "sq": "e2", "kind": "good" }, { "sq": "c2", "kind": "good" }, { "sq": "b3", "kind": "good" }, { "sq": "b5", "kind": "good" }, { "sq": "c6", "kind": "good" }], "text": "Astuce : à chaque saut, le cavalier **change de couleur** de case. Posé sur une case foncée, il arrive toujours sur une case claire." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/8/1N6 w - - 0 1", "stars": ["c3", "d5", "f6", "h7"], "text": "Saute d'étoile en étoile !" },
+      { "type": "move", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "accept": ["g1f3", "g1h3", "b1c3", "b1a3"], "text": "Au début de la partie, seul le cavalier peut sortir sans qu'un pion bouge. Fais sauter un cavalier par-dessus le mur de pions !", "success": "Hop ! Il a sauté par-dessus les pions. Vers le centre (f3, c3), c'est encore mieux." },
+      { "type": "quiz", "fen": "8/8/8/8/3N4/8/8/8 w - - 0 1", "text": "Combien de cases un cavalier placé au centre (en d4) peut-il atteindre ?", "choices": ["4", "6", "8"], "answer": 2, "explain": "8 au centre, mais seulement 2 dans un coin. D'où le dicton : « **cavalier sur le bord, cavalier mort** » !" }
+    ]
+  },
+  {
+    "id": "pawn",
+    "chapter": "Les pièces",
+    "title": "Le pion",
+    "icon": "p",
+    "summary": "Il avance tout droit et capture en diagonale.",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/8/8/4P3/8 w - - 0 1", "arrows": [{ "from": "e2", "to": "e3" }, { "from": "e2", "to": "e4", "color": "gold" }], "text": "Le **pion** avance **tout droit**, d'une case. Depuis sa case de départ, il peut avancer de **deux cases** d'un coup. Et il ne recule **jamais** !" },
+      { "type": "text", "fen": "8/8/8/3npr2/4P3/8/8/8 w - - 0 1", "arrows": [{ "from": "e4", "to": "d5", "color": "pink" }, { "from": "e4", "to": "f5", "color": "pink" }], "highlights": [{ "sq": "e5", "kind": "bad" }], "text": "Particularité : le pion **capture en diagonale**, une case en avant. Il ne peut pas prendre tout droit : ici, le pion e5 le **bloque**, mais il peut capturer en d5 ou en f5." },
+      { "type": "stars", "fen": "8/8/8/8/8/8/4P3/8 w - - 0 1", "stars": ["e4", "e6"], "text": "Emmène ton pion jusqu'aux étoiles. Profite du double pas !" },
+      { "type": "move", "fen": "4k3/8/8/3q4/4P3/8/8/4K3 w - - 0 1", "accept": ["e4d5"], "text": "La dame noire s'est approchée un peu trop près de ton pion…", "success": "Le petit pion a capturé la dame en diagonale : quelle affaire !" },
+      { "type": "quiz", "fen": "4k3/8/8/4p3/4P3/8/8/4K3 w - - 0 1", "text": "Le pion blanc e4 fait face au pion noir e5. Peut-il avancer ?", "choices": ["Oui, il le capture", "Non, il est bloqué"], "answer": 1, "explain": "Un pion ne capture qu'en diagonale : face à face, les deux pions sont bloqués." },
+      { "type": "text", "text": "Et si un pion atteint la dernière rangée ? Il se transforme : c'est la **promotion**. On verra ça dans les coups spéciaux !" }
+    ]
+  },
+  {
+    "id": "values",
+    "chapter": "Gagner la partie",
+    "title": "La valeur des pièces",
+    "icon": "gem",
+    "summary": "Compter les points pour faire de bons échanges.",
+    "steps": [
+      { "type": "text", "text": "Pour savoir si un échange est bon, on compte en **points** : pion **1**, cavalier **3**, fou **3**, tour **5**, dame **9**. Le roi n'a pas de prix : le perdre, c'est perdre la partie." },
+      { "type": "quiz", "text": "Tu peux prendre une tour en donnant ton fou en échange. Bonne affaire ?", "choices": ["Oui : je gagne 2 points", "Non : je perds 2 points"], "answer": 0, "explain": "Tu donnes 3 et tu reçois 5 : +2. On appelle ça « gagner la qualité »." },
+      { "type": "quiz", "text": "Qu'est-ce qui vaut le plus : deux tours ou une dame ?", "choices": ["Deux tours", "La dame", "C'est pareil"], "answer": 0, "explain": "Deux tours valent 10 points, un peu plus qu'une dame (9)." },
+      { "type": "move", "fen": "4k3/8/8/8/8/1n6/4K3/1r1Q4 w - - 0 1", "accept": ["d1b1"], "wrong": { "d1b3": "Le cavalier ne vaut que 3 points, la tour en vaut 5 !" }, "text": "Ta dame peut capturer une tour **ou** un cavalier. Choisis le meilleur butin !", "success": "C'est ça : 5 points valent mieux que 3." },
+      { "type": "text", "text": "Attention : une pièce **protégée** coûte plus cher à prendre, car l'adversaire reprend. Avant de capturer, compte ce que tu gagnes **et** ce que tu risques de perdre." }
+    ]
+  },
+  {
+    "id": "check",
+    "chapter": "Gagner la partie",
+    "title": "L'échec",
+    "icon": "alert",
+    "summary": "Le roi attaqué et les trois façons de le sauver.",
+    "steps": [
+      { "type": "text", "fen": "4k3/8/8/8/8/8/8/4R1K1 b - - 0 1", "arrows": [{ "from": "e1", "to": "e8", "color": "pink" }], "text": "Quand le roi est attaqué, on dit qu'il est **en échec**. Le joueur doit **immédiatement** s'en protéger : c'est obligatoire, avant toute autre chose." },
+      { "type": "text", "text": "Il existe **trois façons** de parer un échec : **1.** **bouger** le roi sur une case sûre, **2.** **s'interposer** en plaçant une pièce entre le roi et l'attaquant, **3.** **capturer** la pièce qui attaque." },
+      { "type": "move", "fen": "4k3/8/8/8/8/8/8/4R1K1 b - - 0 1", "orientation": "b", "accept": ["*"], "text": "Tu joues les Noirs. Ton roi est en échec : **mets-le à l'abri** en le déplaçant.", "success": "Ouf ! Le roi a quitté la colonne de la tour." },
+      { "type": "move", "fen": "3qkb2/3p1p2/8/8/8/8/8/K3R3 b - - 0 1", "orientation": "b", "accept": ["*"], "text": "Cette fois, le roi est entouré de ses propres pièces. **Interpose** une pièce !", "success": "Parfait : ta pièce fait bouclier entre la tour et ton roi." },
+      { "type": "move", "fen": "4k3/8/8/8/8/5n2/8/3QK3 w - - 0 1", "accept": ["d1f3"], "wrong": { "e1e2": "Le roi s'échappe, c'est permis… mais tu pouvais **capturer** l'attaquant et gagner une pièce !", "e1f2": "Le roi s'échappe, c'est permis… mais tu pouvais **capturer** l'attaquant et gagner une pièce !", "e1f1": "Le roi s'échappe, c'est permis… mais tu pouvais **capturer** l'attaquant et gagner une pièce !" }, "text": "Le cavalier noir fait échec à ton roi. Trouve comment **capturer** l'attaquant.", "success": "Bravo : la meilleure défense, c'est parfois de manger l'attaquant !" },
+      { "type": "quiz", "text": "Un joueur peut-il jouer un coup qui met son propre roi en échec ?", "choices": ["Oui, si ça gagne une pièce", "Non, c'est interdit"], "answer": 1, "explain": "Un coup qui laisse ou met son propre roi en échec est illégal, tout simplement." }
+    ]
+  },
+  {
+    "id": "mate",
+    "chapter": "Gagner la partie",
+    "title": "Échec et mat",
+    "icon": "crown",
+    "summary": "Le but du jeu : un échec sans aucune parade.",
+    "steps": [
+      { "type": "text", "fen": "3R2k1/5ppp/8/8/8/8/8/6K1 b - - 0 1", "text": "Si le roi est en échec **et** qu'aucune des trois parades n'est possible, c'est **échec et mat** : la partie est terminée, et celui qui a donné le mat a **gagné** !" },
+      { "type": "move", "fen": "6k1/5ppp/8/8/8/8/8/3R2K1 w - - 0 1", "accept": ["#"], "text": "À toi de donner le mat en **un coup** ! Regarde bien ce qui enferme le roi noir.", "success": "Échec et mat ! Le roi est prisonnier de ses propres pions : c'est le **mat du couloir**." },
+      { "type": "move", "fen": "k7/8/1K6/8/8/8/8/7Q w - - 0 1", "accept": ["#"], "text": "Ta dame et ton roi travaillent ensemble. Trouve le mat en un coup.", "success": "Magnifique ! Le roi noir n'a plus aucune case." },
+      { "type": "move", "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4", "accept": ["#"], "text": "Ta dame et ton fou visent la même case faible… Trouve le mat en un coup !", "success": "C'est le célèbre **coup du berger** : la case f7 n'était défendue que par le roi. On apprendra plus tard à s'en protéger." },
+      { "type": "quiz", "text": "Comment note-t-on un coup qui donne échec et mat ?", "choices": ["Avec un +", "Avec un #", "Avec un !"], "answer": 1, "explain": "Le « + » signale un échec, le « # » un échec et mat. Par exemple : Dxf7#." }
+    ]
+  },
+  {
+    "id": "stalemate",
+    "chapter": "Gagner la partie",
+    "title": "Le pat",
+    "icon": "pause",
+    "summary": "Aucun coup possible sans être en échec : match nul !",
+    "steps": [
+      { "type": "text", "fen": "k7/2Q5/1K6/8/8/8/8/8 b - - 0 1", "text": "Attention au **pat** ! Si le joueur qui doit jouer **n'est pas en échec** mais n'a **aucun coup légal**, la partie est **nulle**. Ici, les Noirs ne peuvent plus bouger : les Blancs, qui gagnaient, ont tout gâché." },
+      { "type": "quiz", "text": "En cas de pat, qui gagne ?", "choices": ["Celui qui a le plus de pièces", "Personne : c'est une partie nulle"], "answer": 1, "explain": "Le pat est une nulle, même avec une dame d'avance !" },
+      { "type": "move", "fen": "k7/8/1K6/8/8/8/8/2Q5 w - - 0 1", "accept": ["#"], "wrong": { "c1c7": "Oups, c'est **pat** ! Le roi noir n'est pas en échec mais ne peut plus bouger : match nul." }, "text": "Donne échec et mat… sans tomber dans le piège du pat !", "success": "Échec et mat ! Tu as évité le pat. Quand l'adversaire n'a plus que son roi, vérifie toujours qu'il lui reste un coup." }
+    ]
+  },
+  {
+    "id": "draws",
+    "chapter": "Gagner la partie",
+    "title": "Les autres nulles",
+    "icon": "scale",
+    "summary": "Répétition, 50 coups, matériel insuffisant, accord.",
+    "steps": [
+      { "type": "text", "text": "Une partie peut aussi être **nulle** dans ces cas : **1.** la même position revient **trois fois** (répétition), **2.** **50 coups** de chaque côté sans capture ni mouvement de pion, **3.** il ne reste pas assez de pièces pour mater, **4.** les deux joueurs se mettent **d'accord**." },
+      { "type": "quiz", "fen": "8/8/3k4/8/8/2B5/8/4K3 w - - 0 1", "text": "Roi et fou contre roi seul : que se passe-t-il ?", "choices": ["On peut mater", "Nulle : matériel insuffisant"], "answer": 1, "explain": "Un fou (ou un cavalier) seul ne peut jamais mater. Il faut au moins une tour, une dame, ou deux pièces mineures bien coordonnées." },
+      { "type": "quiz", "text": "Tu es en train de perdre. L'adversaire répète les mêmes coups, la position revient pour la 3e fois. Résultat ?", "choices": ["La partie continue", "Partie nulle"], "answer": 1, "explain": "La triple répétition rend la partie nulle : une vraie bouée de sauvetage quand on est en difficulté !" }
+    ]
+  },
+  {
+    "id": "castling",
+    "chapter": "Coups spéciaux",
+    "title": "Le roque",
+    "icon": "castle",
+    "summary": "Mettre le roi à l'abri en un seul coup.",
+    "steps": [
+      { "type": "text", "fen": "r3k2r/pppppppp/8/8/8/8/PPPPPPPP/R3K2R w KQkq - 0 1", "arrows": [{ "from": "e1", "to": "g1", "color": "gold" }, { "from": "h1", "to": "f1" }], "text": "Le **roque** est le seul coup où l'on bouge **deux pièces** : le roi fait **deux pas** vers une tour, et la tour saute de l'autre côté du roi. Il met le roi à l'abri et réveille la tour." },
+      { "type": "text", "text": "Conditions : le roi et la tour n'ont **pas encore bougé**, **aucune pièce** entre eux, et le roi **n'est pas en échec**, ne **traverse** pas et n'**arrive** pas sur une case attaquée." },
+      { "type": "move", "fen": "rnbqk2r/pppp1ppp/5n2/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4", "accept": ["e1g1"], "text": "Fais le **petit roque** : déplace ton roi de deux cases vers la tour h1.", "success": "Petit roque réussi, noté **O-O**. Ton roi est bien caché derrière ses pions." },
+      { "type": "move", "fen": "r3kbnr/ppp1pppp/2nq4/3p1b2/3P1B2/2NQ4/PPP1PPPP/R3KBNR w KQkq - 6 5", "accept": ["e1c1"], "text": "Et maintenant le **grand roque**, du côté de la dame : deux pas vers la tour a1.", "success": "Grand roque, noté **O-O-O** : la tour arrive directement au centre." },
+      { "type": "quiz", "fen": "4k3/8/8/8/8/8/5r2/R3K2R w KQ - 0 1", "highlights": [{ "sq": "f1", "kind": "bad" }], "text": "Les Blancs peuvent-ils faire le petit roque ici ?", "choices": ["Oui", "Non"], "answer": 1, "explain": "La tour noire attaque f1 : le roi n'a pas le droit de **traverser** une case attaquée. Le grand roque, lui, reste possible !" }
+    ]
+  },
+  {
+    "id": "enpassant",
+    "chapter": "Coups spéciaux",
+    "title": "La prise en passant",
+    "icon": "swap",
+    "summary": "Capturer un pion qui vient de faire un double pas.",
+    "steps": [
+      { "type": "text", "fen": "4k3/3p4/8/4P3/8/8/8/4K3 b - - 0 1", "arrows": [{ "from": "d7", "to": "d5", "color": "gold" }], "text": "Une règle surprenante ! Si un pion adverse avance de **deux cases** et arrive **juste à côté** de ton pion, tu peux le capturer **comme s'il n'avait avancé que d'une case**." },
+      { "type": "move", "fen": "4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 2", "accept": ["e5d6"], "text": "Le pion noir vient de jouer d7-d5, pour passer à côté de ton pion. Capture-le **en passant** : ton pion va en d6.", "success": "Prise en passant ! Ton pion arrive en d6 et le pion d5 disparaît." },
+      { "type": "text", "text": "Attention : ce droit n'existe **qu'au coup suivant**. Si tu joues autre chose, l'occasion est perdue." }
+    ]
+  },
+  {
+    "id": "promotion",
+    "chapter": "Coups spéciaux",
+    "title": "La promotion",
+    "icon": "star",
+    "summary": "Le pion arrivé au bout devient une pièce.",
+    "steps": [
+      { "type": "text", "fen": "8/4P1k1/8/8/8/8/8/4K3 w - - 0 1", "arrows": [{ "from": "e7", "to": "e8", "color": "gold" }], "text": "Quand un pion atteint la **dernière rangée**, il se transforme en la pièce de ton choix, sauf le roi : dame, tour, fou ou cavalier. Presque toujours, on choisit la **dame** !" },
+      { "type": "move", "fen": "8/4P1k1/8/8/8/8/8/4K3 w - - 0 1", "accept": ["e7e8q"], "wrong": { "e7e8r": "Une tour, c'est bien… mais une dame, c'est mieux !", "e7e8b": "Un fou ? Une dame ferait tout ce qu'il fait, et plus encore.", "e7e8n": "Le cavalier est utile dans de rares cas. Ici, prends la dame !" }, "text": "Pousse ton pion en e8, puis choisis la **dame** dans le menu.", "success": "Une nouvelle dame est née !" },
+      { "type": "quiz", "text": "Peut-on avoir deux dames en même temps ?", "choices": ["Oui", "Non"], "answer": 0, "explain": "Oui ! Tu peux même en avoir neuf en théorie. Les pièces capturées ne comptent pas : la promotion crée une nouvelle pièce." }
+    ]
+  },
+  {
+    "id": "notation",
+    "chapter": "Lire et écrire",
+    "title": "La notation",
+    "icon": "pen",
+    "summary": "Lire et écrire les coups comme les champions.",
+    "steps": [
+      { "type": "text", "text": "Les joueurs notent leurs parties pour les rejouer et les étudier. En français, chaque pièce a sa lettre : **R** roi, **D** dame, **T** tour, **F** fou, **C** cavalier. Le pion n'a pas de lettre." },
+      { "type": "text", "text": "Un coup s'écrit **lettre de la pièce + case d'arrivée** : *Cf3*, le cavalier va en f3. Une capture ajoute un **x** : *Fxe5*. Un échec s'écrit **+**, un mat **#**. Le petit roque s'écrit *O-O*, le grand *O-O-O*." },
+      { "type": "move", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "accept": ["e2e4"], "text": "Joue le coup **e4**.", "success": "C'est ça : pas de lettre, donc c'est un pion qui va en e4." },
+      { "type": "move", "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2", "accept": ["g1f3"], "text": "Maintenant, joue **Cf3**.", "success": "Parfait : le cavalier va en f3." },
+      { "type": "quiz", "text": "Que signifie **Fxc6+** ?", "choices": ["Le fou capture en c6 et fait échec", "Le fou va en c6 sans capturer", "La dame capture en c6"], "answer": 0, "explain": "F = fou, x = capture, c6 = case d'arrivée, + = échec." },
+      { "type": "quiz", "text": "Dans « Td1 », quelle pièce bouge ?", "choices": ["La dame", "La tour", "Le roi"], "answer": 1, "explain": "T comme tour. La dame, c'est D." }
+    ]
+  },
+  {
+    "id": "opening",
+    "chapter": "Bien commencer",
+    "title": "Les principes d'ouverture",
+    "icon": "rocket",
+    "summary": "Le centre, le développement et le roque.",
+    "steps": [
+      { "type": "text", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "highlights": [{ "sq": "d4", "kind": "focus" }, { "sq": "e4", "kind": "focus" }, { "sq": "d5", "kind": "focus" }, { "sq": "e5", "kind": "focus" }], "text": "Trois principes pour bien débuter : **1.** occupe le **centre** (les quatre cases qui brillent), **2.** **développe** tes cavaliers et tes fous, **3.** **roque** tôt pour protéger ton roi." },
+      { "type": "move", "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", "accept": ["e2e4", "d2d4"], "wrong": { "a2a4": "Un pion sur le bord ne contrôle pas le centre.", "h2h4": "Un pion sur le bord ne contrôle pas le centre.", "g2g4": "Ce coup affaiblit ton roi sans prendre le centre." }, "fallback": "Essaie plutôt d'avancer de deux cases un pion **central** (e ou d).", "text": "Quel est un bon premier coup ? Occupe le centre !", "success": "Excellent ! Ton pion contrôle le centre et libère ta dame et un fou." },
+      { "type": "move", "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2", "accept": ["g1f3", "b1c3", "f1c4", "f1b5"], "fallback": "Sors plutôt un **cavalier** ou un **fou** vers le centre.", "text": "Les Noirs ont répondu e5. **Développe** une pièce vers le centre.", "success": "Bien joué : une pièce de plus entre dans la partie." },
+      { "type": "text", "text": "À éviter en ouverture : **sortir la dame trop tôt** (elle se fait chasser), bouger **plusieurs fois la même pièce**, et avancer **les pions du bord** sans raison." },
+      { "type": "quiz", "text": "Pourquoi roquer tôt ?", "choices": ["Pour mettre le roi à l'abri", "Pour gagner une pièce", "Parce que c'est obligatoire"], "answer": 0, "explain": "Au centre, le roi devient une cible quand les colonnes s'ouvrent. Le roque le cache et active la tour." }
+    ]
+  },
+  {
+    "id": "scholar",
+    "chapter": "Bien commencer",
+    "title": "Déjouer le coup du berger",
+    "icon": "shield",
+    "summary": "Défendre la case faible f7.",
+    "steps": [
+      { "type": "text", "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3", "orientation": "b", "arrows": [{ "from": "h5", "to": "f7", "color": "pink" }, { "from": "c4", "to": "f7", "color": "pink" }], "text": "Tu joues les Noirs. Attention : les Blancs menacent **Dxf7#** ! La dame et le fou visent tous les deux la case **f7**." },
+      { "type": "move", "fen": "r1bqkbnr/pppp1ppp/2n5/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 3 3", "orientation": "b", "accept": ["d8e7", "d8f6", "g7g6", "g8h6"], "wrong": { "g8f6": "Aïe ! Cf6 attaque la dame… mais ne protège pas f7 : **Dxf7** est mat !" }, "fallback": "Ce coup ne protège pas f7. Cherche une pièce qui peut défendre f7 ou bloquer la dame.", "text": "Défends-toi ! Trouve un coup qui protège f7 ou coupe l'attaque de la dame.", "success": "Bien défendu ! La menace de mat est écartée." },
+      { "type": "text", "text": "Retiens : au début de la partie, **f7** (et **f2** pour les Blancs) est le point faible, protégé seulement par le roi. Surveille-le !" }
+    ]
+  },
+  {
+    "id": "fork",
+    "chapter": "Tactiques",
+    "title": "La fourchette",
+    "icon": "fork",
+    "summary": "Attaquer deux cibles à la fois.",
+    "steps": [
+      { "type": "text", "text": "Une **fourchette**, c'est une pièce qui attaque **deux cibles à la fois**. L'adversaire ne peut en sauver qu'une ! Le cavalier est le champion des fourchettes." },
+      { "type": "move", "fen": "2q1k3/8/8/8/4N3/8/8/4K3 w - - 0 1", "accept": ["e4d6"], "text": "Trouve le saut de cavalier qui attaque **le roi et la dame** en même temps.", "success": "Fourchette royale ! Le roi doit bouger… et le cavalier croquera la dame." },
+      { "type": "move", "fen": "4k3/8/8/2n1b3/8/3PP3/8/4K3 w - - 0 1", "accept": ["d3d4"], "text": "Même un simple pion peut faire une fourchette. Trouve-la !", "success": "Le pion attaque le cavalier et le fou : l'un des deux va tomber." }
+    ]
+  },
+  {
+    "id": "pin",
+    "chapter": "Tactiques",
+    "title": "Le clouage",
+    "icon": "pin",
+    "summary": "Immobiliser une pièce devant une plus précieuse.",
+    "steps": [
+      { "type": "text", "fen": "4k3/8/2n5/8/B7/8/8/4K3 w - - 0 1", "arrows": [{ "from": "a4", "to": "e8", "color": "pink" }], "text": "Un **clouage** immobilise une pièce : si elle bouge, elle découvre une pièce plus précieuse derrière elle. Ici, le cavalier c6 ne peut plus bouger, sinon son roi serait en échec." },
+      { "type": "move", "fen": "4k3/8/8/4q3/8/8/5K2/7R w - - 0 1", "accept": ["h1e1"], "text": "Cloue la dame noire contre son roi !", "success": "La dame est clouée sur la colonne e : si elle la quitte, son roi est en échec. Elle est perdue !" }
+    ]
+  },
+  {
+    "id": "skewer",
+    "chapter": "Tactiques",
+    "title": "L'enfilade",
+    "icon": "skewer",
+    "summary": "Chasser la pièce de devant, prendre celle de derrière.",
+    "steps": [
+      { "type": "text", "text": "L'**enfilade**, c'est un clouage à l'envers : tu attaques une pièce précieuse (souvent le roi), elle doit s'écarter… et tu captures la pièce qui se cachait derrière." },
+      { "type": "move", "fen": "4q3/8/8/4k3/8/8/8/R5K1 w - - 0 1", "accept": ["a1e1"], "text": "Le roi et la dame noirs sont sur la même colonne. Profites-en !", "success": "Échec ! Le roi doit quitter la colonne… et ta tour prendra la dame en e8." }
+    ]
+  },
+  {
+    "id": "discovered",
+    "chapter": "Tactiques",
+    "title": "L'attaque à la découverte",
+    "icon": "eye",
+    "summary": "Une pièce s'écarte, une autre attaque.",
+    "steps": [
+      { "type": "text", "text": "Quand une pièce s'écarte, elle peut **découvrir** l'attaque d'une pièce placée derrière elle. Si la pièce qui bouge attaque aussi quelque chose, c'est une double menace imparable !" },
+      { "type": "move", "fen": "4k3/1q6/8/8/4B3/8/8/4R1K1 w - - 0 1", "accept": ["e4b7"], "text": "Ton fou bloque ta propre tour. Écarte-le… en faisant des dégâts !", "success": "Échec à la découverte ! La tour attaque le roi, et le fou a déjà mangé la dame." }
+    ]
+  },
+  {
+    "id": "hanging",
+    "chapter": "Tactiques",
+    "title": "Les pièces en prise",
+    "icon": "search",
+    "summary": "Repérer ce qui n'est pas protégé.",
+    "steps": [
+      { "type": "text", "text": "La plupart des parties de débutants se gagnent grâce aux **pièces en prise** : des pièces attaquées mais **pas protégées**. Avant chaque coup, pose-toi deux questions : « **Que menace mon adversaire ?** » et « **Qu'est-ce que je peux prendre gratuitement ?** »" },
+      { "type": "move", "fen": "r3k3/ppp2ppp/8/3n4/8/2N5/PPP2PPP/4K2R w K - 0 1", "accept": ["c3d5"], "text": "Une pièce noire n'est protégée par personne. Trouve-la et capture-la !", "success": "Pièce gratuite ! Personne ne peut reprendre ton cavalier." },
+      { "type": "text", "text": "Dans le mode **Jouer**, je te préviendrai quand une de tes pièces reste en prise. Petit à petit, tu prendras le réflexe tout seul !" }
+    ]
+  },
+  {
+    "id": "backrank",
+    "chapter": "Mats élémentaires",
+    "title": "Le mat du couloir",
+    "icon": "wall",
+    "summary": "Le roi enfermé derrière ses pions.",
+    "steps": [
+      { "type": "text", "fen": "6k1/5ppp/8/8/8/8/5PPP/2R1R1K1 w - - 0 1", "arrows": [{ "from": "e1", "to": "e8", "color": "pink" }], "text": "Le **mat du couloir** : le roi est enfermé derrière ses propres pions, et une tour ou une dame arrive sur la dernière rangée." },
+      { "type": "move", "fen": "6k1/5ppp/8/8/8/8/5PPP/2R1R1K1 w - - 0 1", "accept": ["#"], "text": "Donne le mat en un coup !", "success": "Mat du couloir ! Les pions du roi noir sont devenus les barreaux de sa prison." },
+      { "type": "text", "text": "Pour t'en protéger : quand la partie est calme, donne de l'**air** à ton roi en avançant un pion devant lui (h3 ou g3 par exemple)." }
+    ]
+  },
+  {
+    "id": "queen-mate",
+    "chapter": "Mats élémentaires",
+    "title": "Mater avec la dame",
+    "icon": "q",
+    "summary": "Dame et roi contre roi seul.",
+    "steps": [
+      { "type": "text", "text": "Avec une dame et ton roi contre un roi seul, tu gagnes toujours. La méthode : la dame **réduit la boîte** du roi adverse en restant à un **saut de cavalier** de lui (pour éviter le pat), puis ton roi vient aider." },
+      { "type": "move", "fen": "7k/8/6K1/8/8/8/8/Q7 w - - 0 1", "accept": ["#"], "text": "Le roi noir est coincé dans le coin. Mat en un coup !", "success": "Mat ! Ton roi garde les cases g7 et h7, la dame fait le reste." },
+      { "type": "move", "fen": "k7/8/2K5/8/8/8/8/1Q6 w - - 0 1", "accept": ["#"], "text": "Encore un ! La dame peut se poser juste à côté du roi, si ton roi la protège.", "success": "Parfait : le roi noir ne peut pas prendre ta dame, elle est protégée." }
+    ]
+  },
+  {
+    "id": "two-rooks",
+    "chapter": "Mats élémentaires",
+    "title": "Le mat de l'escalier",
+    "icon": "stairs",
+    "summary": "Deux tours qui poussent le roi vers le bord.",
+    "steps": [
+      { "type": "text", "text": "Avec deux tours, pas besoin du roi : elles se relaient, **rangée après rangée**, pour pousser le roi adverse vers le bord. On appelle ça le **mat de l'escalier**." },
+      { "type": "move", "fen": "k7/7R/8/8/8/8/8/K5R1 w - - 0 1", "accept": ["#"], "text": "Une tour garde la 7e rangée. Termine le travail !", "success": "Échec et mat ! Une tour barre la 7e rangée, l'autre attaque la 8e." }
+    ]
+  },
+  {
+    "id": "opposition",
+    "chapter": "Finales",
+    "title": "L'opposition",
+    "icon": "kings",
+    "summary": "Le duel des rois en finale.",
+    "steps": [
+      { "type": "text", "fen": "8/8/4k3/8/4K3/8/8/8 w - - 0 1", "text": "En finale, le roi devient un **combattant**. Quand deux rois se font face avec **une case entre eux**, celui qui **n'a pas le trait** a l'**opposition** : l'autre doit reculer ou s'écarter." },
+      { "type": "quiz", "fen": "8/8/4k3/8/4K3/8/8/8 w - - 0 1", "text": "C'est aux Blancs de jouer. Qui a l'opposition ?", "choices": ["Les Blancs", "Les Noirs"], "answer": 1, "explain": "Les Noirs ont l'opposition : les Blancs doivent jouer et céder du terrain." },
+      { "type": "text", "text": "Astuce de finale : avec un roi et un pion contre un roi, place ton **roi devant ton pion** plutôt que derrière. C'est lui qui ouvre le chemin !" }
+    ]
+  },
+  {
+    "id": "square-rule",
+    "chapter": "Finales",
+    "title": "La règle du carré",
+    "icon": "square",
+    "summary": "Le roi rattrape-t-il le pion ?",
+    "steps": [
+      { "type": "text", "fen": "8/8/8/8/1P3k2/8/8/K7 b - - 0 1", "highlights": [{ "sq": "b4", "kind": "info" }, { "sq": "b8", "kind": "info" }, { "sq": "f8", "kind": "info" }, { "sq": "f4", "kind": "info" }], "text": "Pour savoir si un roi rattrape un pion qui file à dame, imagine un **carré** : du pion jusqu'à sa case de promotion, puis autant de cases sur le côté. Si le roi peut **entrer dans le carré**, il rattrape le pion." },
+      { "type": "quiz", "fen": "8/8/8/8/1P3k2/8/8/K7 b - - 0 1", "text": "C'est aux Noirs de jouer. Le roi f4 rattrape-t-il le pion b4 ?", "choices": ["Oui", "Non"], "answer": 0, "explain": "Le roi est déjà sur le bord du carré (b4-b8-f8-f4) et c'est à lui de jouer : il entre dans le carré et rattrape le pion." }
+    ]
+  },
+  {
+    "id": "passed-pawn",
+    "chapter": "Finales",
+    "title": "Le pion passé",
+    "icon": "p",
+    "summary": "Un pion que plus aucun pion ne peut arrêter.",
+    "steps": [
+      { "type": "text", "fen": "4k3/8/8/p2P4/8/8/8/4K3 w - - 0 1", "highlights": [{ "sq": "d5", "kind": "focus" }], "text": "Un **pion passé** n'a plus aucun pion adverse devant lui, ni sur les colonnes voisines. Rien ne l'empêche d'avancer, sauf les pièces : c'est une arme redoutable en finale." },
+      { "type": "move", "fen": "4k3/8/8/p2P4/8/8/8/4K3 w - - 0 1", "accept": ["d5d6"], "text": "Pousse ton pion passé !", "success": "« Les pions passés doivent avancer ! » — il menace déjà d'aller à dame." }
+    ]
+  }
+]

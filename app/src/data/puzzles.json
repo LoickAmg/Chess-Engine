@@ -1,0 +1,22 @@
+[
+  { "id": "p01", "title": "La dernière rangée", "theme": "Mat en 1", "fen": "6k1/5ppp/8/8/8/8/8/4R1K1 w - - 0 1", "solution": ["#"], "hint": "Le roi noir est enfermé derrière ses pions." },
+  { "id": "p02", "title": "Le berger", "theme": "Mat en 1", "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4", "solution": ["#"], "hint": "La case f7 n'est protégée que par le roi." },
+  { "id": "p03", "title": "L'étouffé", "theme": "Mat en 1", "fen": "6rk/6pp/8/6N1/8/8/8/6K1 w - - 0 1", "solution": ["#"], "hint": "Le roi noir est entouré de ses propres pièces. Un saut suffit." },
+  { "id": "p04", "title": "Coin de dame", "theme": "Mat en 1", "fen": "k7/8/1K6/8/8/8/8/7Q w - - 0 1", "solution": ["#"], "hint": "Ton roi contrôle déjà a7 et b7." },
+  { "id": "p05", "title": "La tour noire frappe", "theme": "Mat en 1", "fen": "3r2k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1", "solution": ["#"], "hint": "Tu joues les Noirs. Le roi blanc aussi a un couloir." },
+  { "id": "p06", "title": "Dame et fou", "theme": "Mat en 1", "fen": "5rk1/5ppp/8/8/8/8/1B6/K5Q1 w - - 0 1", "solution": ["#"], "hint": "Le fou b2 vise g7." },
+  { "id": "p07", "title": "Premier rang", "theme": "Mat en 1", "fen": "6k1/5ppp/8/8/8/8/r4PPP/6K1 b - - 0 1", "solution": ["#"], "hint": "Tu joues les Noirs. La première rangée est grande ouverte." },
+  { "id": "p08", "title": "Le coin", "theme": "Mat en 1", "fen": "7k/8/6K1/8/8/8/8/Q7 w - - 0 1", "solution": ["#"], "hint": "La dame peut balayer la 8e rangée." },
+  { "id": "p09", "title": "Fourchette de cavalier", "theme": "Fourchette", "fen": "r3k3/8/8/1N6/8/8/8/4K3 w - - 0 1", "solution": ["b5c7"], "hint": "Une case attaque à la fois le roi et la tour." },
+  { "id": "p10", "title": "Double attaque", "theme": "Fourchette", "fen": "r3k3/8/8/8/8/8/8/3QK3 w - - 0 1", "solution": ["d1a4"], "hint": "La dame peut faire échec tout en visant la tour a8." },
+  { "id": "p11", "title": "L'enfilade", "theme": "Enfilade", "fen": "7q/8/8/7k/8/8/8/1K1R4 w - - 0 1", "solution": ["d1h1"], "hint": "Le roi et la dame sont alignés sur la colonne h." },
+  { "id": "p12", "title": "Découverte", "theme": "Attaque à la découverte", "fen": "4k3/8/8/8/8/4N3/2q5/4R1K1 w - - 0 1", "solution": ["e3c2"], "hint": "Le cavalier bloque la tour e1. En bougeant, il peut manger quelque chose." },
+  { "id": "p13", "title": "Le cavalier cloué", "theme": "Clouage", "fen": "4k3/8/8/4n3/8/8/5P2/4R1K1 w - - 0 1", "solution": ["f2f4"], "hint": "Le cavalier e5 ne peut pas bouger : attaque-le !" },
+  { "id": "p14", "title": "À dame !", "theme": "Promotion", "fen": "8/1P6/8/8/8/5k2/8/6K1 w - - 0 1", "solution": ["b7b8q"], "hint": "Le pion n'est plus qu'à une case de la promotion." },
+  { "id": "p15", "title": "En passant", "theme": "Coup spécial", "fen": "4k3/8/8/2Pp4/8/8/8/4K3 w - d6 0 2", "solution": ["c5d6"], "hint": "Le pion noir vient de faire un double pas juste à côté de ton pion." },
+  { "id": "p16", "title": "L'escalier", "theme": "Mat en 2", "fen": "7k/8/8/8/8/8/R7/1R4K1 w - - 0 1", "solution": ["a2a7", "h8g8", "b1b8"], "hint": "Une tour ferme la 7e rangée, l'autre viendra sur la 8e." },
+  { "id": "p17", "title": "Le mat de Philidor", "theme": "Mat en 2", "fen": "r6k/6pp/7N/8/2Q5/8/8/6K1 w - - 0 1", "solution": ["c4g8", "a8g8", "h6f7"], "hint": "Un sacrifice de dame en g8, puis le cavalier étouffe le roi." },
+  { "id": "p18", "title": "La pièce oubliée", "theme": "Pièce en prise", "fen": "r3k3/ppp2ppp/8/3n4/8/2N5/PPP2PPP/4K2R w K - 0 1", "solution": ["c3d5"], "hint": "Qui protège le cavalier d5 ?" },
+  { "id": "p19", "title": "La royale", "theme": "Fourchette", "fen": "2q1k3/8/8/8/4N3/8/8/4K3 w - - 0 1", "solution": ["e4d6"], "hint": "Cherche la case d'où le cavalier touche e8 et c8." },
+  { "id": "p20", "title": "Clouage mortel", "theme": "Clouage", "fen": "4k3/8/8/4q3/8/8/5K2/7R w - - 0 1", "solution": ["h1e1"], "hint": "Aligne ta tour avec la dame et le roi." }
+]

@@ -8,6 +8,43 @@ génération de coups, évaluation, recherche) n'a **aucune** dépendance
 externe ; seul le binaire UCI fait de l'I/O sur `stdin`/`stdout`, en Rust
 standard.
 
+## Chess Académie : apprendre les échecs avec le moteur
+
+Le dossier [`app/`](app/) contient **Chess Académie**, une application de bureau
+(Tauri + Vue) construite sur ce moteur. C'est un professeur d'échecs :
+
+- **31 leçons** en 9 chapitres : l'échiquier et le nom des cases, chaque pièce
+  (avec des parcours « attrape les étoiles »), la valeur des pièces, l'échec, le
+  mat, le pat et les autres nulles, le roque, la prise en passant, la promotion,
+  la notation française (R, D, T, F, C), les principes d'ouverture, les tactiques
+  (fourchette, clouage, enfilade, découverte, pièces en prise), les mats
+  élémentaires et les finales (opposition, règle du carré, pion passé) ;
+- **Jouer contre Lumi** : cinq niveaux, et après chacun de tes coups une analyse
+  (meilleur coup, imprécision, erreur, gaffe) avec des explications : pièces
+  laissées en prise, mat manqué, principes d'ouverture, meilleur coup à la place ;
+  indices, reprise de coup, barre d'évaluation ;
+- **20 puzzles** (mats en 1 et en 2, fourchettes, clouages, enfilades…),
+  un **entraînement aux cases** chronométré et un **lexique**.
+
+Les leçons et les puzzles sont des fichiers JSON (`app/src/data/`) rejoués par
+les tests (`app/src-tauri/tests/content.rs`) : chaque position est lue par le
+moteur, chaque coup attendu est légal et chaque « mat » en est vraiment un.
+
+L'installateur Windows se construit avec :
+
+```bash
+cd app && npm install && npx tauri build
+```
+
+Il produit `app/src-tauri/target/release/bundle/nsis/Chess Académie_1.0.0_x64-setup.exe`
+(installation sans droits administrateur, raccourcis menu Démarrer et Bureau).
+
+> **Pourquoi `chess-uci.exe` « se ferme tout seul » ?** Ce binaire n'est pas une
+> application : c'est un moteur au protocole UCI, qui attend des commandes texte
+> sur son entrée standard. Il est fait pour être branché dans une interface
+> d'échecs (Arena, Cute Chess, En Croissant…). Pour jouer et apprendre, lance
+> Chess Académie.
+
 ## Ce que fait (et ne fait pas) ce moteur
 
 Plateau 8x8 en tableau plein ("mailbox"), FEN import/export complet,
