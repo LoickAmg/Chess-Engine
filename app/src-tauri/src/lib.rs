@@ -82,7 +82,11 @@ pub fn describe(b: &Board) -> PositionInfo {
     let check = b.is_in_check(b.side_to_move);
     PositionInfo {
         fen: b.to_fen(),
-        turn: if b.side_to_move == Color::White { 'w' } else { 'b' },
+        turn: if b.side_to_move == Color::White {
+            'w'
+        } else {
+            'b'
+        },
         legal: moves
             .iter()
             .map(|&m| LegalMove {
@@ -112,19 +116,29 @@ pub fn api_play(fen: &str, uci: &str) -> Result<Played, String> {
         Some(if mv.flag == chess_engine::MoveFlag::EnPassantCapture {
             'p'
         } else {
-            b.piece_at(mv.to).map(|p| p.kind.to_fen_char()).unwrap_or('p')
+            b.piece_at(mv.to)
+                .map(|p| p.kind.to_fen_char())
+                .unwrap_or('p')
         })
     } else {
         None
     };
     let san = to_san(&b, mv, Language::French);
     let next = b.make_move(mv);
-    Ok(Played { san, uci: uci.to_string(), captured, position: describe(&next) })
+    Ok(Played {
+        san,
+        uci: uci.to_string(),
+        captured,
+        position: describe(&next),
+    })
 }
 
 pub fn api_engine_reply(fen: &str, level: u8, seed: u64) -> Result<Option<EngineMove>, String> {
     let b = board(fen)?;
-    Ok(engine_move(&b, level, seed).map(|m| EngineMove { uci: m.to_uci(), san: to_san(&b, m, Language::French) }))
+    Ok(engine_move(&b, level, seed).map(|m| EngineMove {
+        uci: m.to_uci(),
+        san: to_san(&b, m, Language::French),
+    }))
 }
 
 pub fn api_hint(fen: &str) -> Result<Option<EngineMove>, String> {
@@ -152,7 +166,12 @@ fn json<T: Serialize>(v: Result<T, String>) -> Result<Value, String> {
 
 /// Aiguillage générique « nom de commande + arguments JSON » (passerelle de développement).
 pub fn dispatch(cmd: &str, args: &Value) -> Result<Value, String> {
-    let s = |k: &str| args.get(k).and_then(Value::as_str).unwrap_or_default().to_string();
+    let s = |k: &str| {
+        args.get(k)
+            .and_then(Value::as_str)
+            .unwrap_or_default()
+            .to_string()
+    };
     let n = |k: &str| args.get(k).and_then(Value::as_u64).unwrap_or(0);
     match cmd {
         "position" => json(api_position(&s("fen"))),
@@ -192,7 +211,13 @@ fn review(fen: String, uci: String) -> Result<Review, String> {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![position, play, engine_reply, hint, review])
+        .invoke_handler(tauri::generate_handler![
+            position,
+            play,
+            engine_reply,
+            hint,
+            review
+        ])
         .run(tauri::generate_context!())
         .expect("impossible de démarrer Chess Academy");
 }

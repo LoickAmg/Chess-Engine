@@ -33,7 +33,11 @@ fn main() {
             let _ = reader.read_exact(&mut body);
             let mut parts = request_line.split_whitespace();
             let method = parts.next().unwrap_or("");
-            let cmd = parts.next().unwrap_or("/").trim_start_matches('/').to_string();
+            let cmd = parts
+                .next()
+                .unwrap_or("/")
+                .trim_start_matches('/')
+                .to_string();
             let (status, payload) = if method == "OPTIONS" {
                 ("204 No Content", String::new())
             } else {

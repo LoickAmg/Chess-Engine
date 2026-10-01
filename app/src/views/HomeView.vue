@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { START_FEN } from "@/lib/chess";
+import { computed, defineAsyncComponent } from "vue";
 import { LESSONS, PUZZLES, TIPS } from "@/lib/content";
 import { useProgressStore } from "@/stores/progress";
 import { useUiStore } from "@/stores/ui";
-import ChessBoard from "@/components/ChessBoard.vue";
 import Icon from "@/components/Icon.vue";
 import Mascot from "@/components/Mascot.vue";
+
+// Plateau 3D chargé à part (Three.js) : l'accueil s'affiche aussitôt, le plateau suit.
+const Board3D = defineAsyncComponent(() => import("@/components/Board3D.vue"));
 
 const ui = useUiStore();
 const progress = useProgressStore();
@@ -70,9 +71,9 @@ const MODES = [
           </div>
         </dl>
       </div>
-      <div class="hero-board" aria-hidden="true">
+      <div class="hero-board">
         <div class="stage">
-          <ChessBoard :fen="START_FEN" :show-coords="true" />
+          <Board3D />
         </div>
       </div>
     </section>

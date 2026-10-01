@@ -9,6 +9,7 @@ use serde_json::Value;
 const LESSONS: &str = include_str!("../../src/data/lessons.json");
 const PUZZLES: &str = include_str!("../../src/data/puzzles.json");
 const GLOSSARY: &str = include_str!("../../src/data/glossary.json");
+const FAMOUS_GAMES: &str = include_str!("../../src/data/famous-games.json");
 
 fn board(fen: &str, ctx: &str) -> Board {
     Board::from_fen(fen).unwrap_or_else(|e| panic!("{ctx} : FEN illisible « {fen} » ({e})"))
@@ -28,7 +29,13 @@ fn is_square(s: &str) -> bool {
 }
 
 fn strs(v: &Value) -> Vec<String> {
-    v.as_array().map(|a| a.iter().filter_map(|x| x.as_str().map(String::from)).collect()).unwrap_or_default()
+    v.as_array()
+        .map(|a| {
+            a.iter()
+                .filter_map(|x| x.as_str().map(String::from))
+                .collect()
+        })
+        .unwrap_or_default()
 }
 
 #[test]
@@ -38,19 +45,31 @@ fn lessons_are_consistent_with_the_engine() {
     let mut ids = std::collections::HashSet::new();
     for lesson in &lessons {
         let id = lesson["id"].as_str().unwrap();
-        assert!(ids.insert(id.to_string()), "identifiant de leçon en double : {id}");
+        assert!(
+            ids.insert(id.to_string()),
+            "identifiant de leçon en double : {id}"
+        );
         let steps = lesson["steps"].as_array().unwrap();
         assert!(!steps.is_empty(), "{id} : aucune étape");
         for (i, step) in steps.iter().enumerate() {
             let ctx = format!("leçon {id}, étape {}", i + 1);
-            assert!(step["text"].as_str().is_some_and(|t| !t.is_empty()), "{ctx} : texte manquant");
+            assert!(
+                step["text"].as_str().is_some_and(|t| !t.is_empty()),
+                "{ctx} : texte manquant"
+            );
             for key in ["highlights"] {
                 for h in step[key].as_array().into_iter().flatten() {
-                    assert!(is_square(h["sq"].as_str().unwrap_or("")), "{ctx} : case invalide");
+                    assert!(
+                        is_square(h["sq"].as_str().unwrap_or("")),
+                        "{ctx} : case invalide"
+                    );
                 }
             }
             for a in step["arrows"].as_array().into_iter().flatten() {
-                assert!(is_square(a["from"].as_str().unwrap()) && is_square(a["to"].as_str().unwrap()), "{ctx} : flèche");
+                assert!(
+                    is_square(a["from"].as_str().unwrap()) && is_square(a["to"].as_str().unwrap()),
+                    "{ctx} : flèche"
+                );
             }
             let fen = step["fen"].as_str();
             match step["type"].as_str().unwrap() {
@@ -61,12 +80,18 @@ fn lessons_are_consistent_with_the_engine() {
                 }
                 "square" => {
                     let targets = strs(&step["targets"]);
-                    assert!(!targets.is_empty() && targets.iter().all(|t| is_square(t)), "{ctx} : cibles");
+                    assert!(
+                        !targets.is_empty() && targets.iter().all(|t| is_square(t)),
+                        "{ctx} : cibles"
+                    );
                 }
                 "stars" => {
                     board(fen.expect("fen requise"), &ctx);
                     let stars = strs(&step["stars"]);
-                    assert!(!stars.is_empty() && stars.iter().all(|s| is_square(s)), "{ctx} : étoiles");
+                    assert!(
+                        !stars.is_empty() && stars.iter().all(|s| is_square(s)),
+                        "{ctx} : étoiles"
+                    );
                 }
                 "quiz" => {
                     if let Some(f) = fen {
@@ -75,12 +100,21 @@ fn lessons_are_consistent_with_the_engine() {
                     let n = step["choices"].as_array().unwrap().len();
                     let answer = step["answer"].as_u64().unwrap() as usize;
                     assert!(answer < n, "{ctx} : réponse hors des choix");
-                    assert!(step["explain"].as_str().is_some(), "{ctx} : explication manquante");
+                    assert!(
+                        step["explain"].as_str().is_some(),
+                        "{ctx} : explication manquante"
+                    );
                 }
                 "move" => {
                     let b = board(fen.expect("fen requise"), &ctx);
-                    assert!(b.king_square(b.side_to_move).is_some(), "{ctx} : il faut un roi au trait");
-                    assert!(step["success"].as_str().is_some(), "{ctx} : message de réussite");
+                    assert!(
+                        b.king_square(b.side_to_move).is_some(),
+                        "{ctx} : il faut un roi au trait"
+                    );
+                    assert!(
+                        step["success"].as_str().is_some(),
+                        "{ctx} : message de réussite"
+                    );
                     for uci in strs(&step["accept"]) {
                         match uci.as_str() {
                             "*" => assert!(!legal_moves(&b).is_empty(), "{ctx} : aucun coup légal"),
@@ -90,7 +124,10 @@ fn lessons_are_consistent_with_the_engine() {
                     }
                     if let Some(wrong) = step["wrong"].as_object() {
                         for u in wrong.keys() {
-                            assert!(parse_uci(&b, u).is_some(), "{ctx} : coup « faux » illégal {u}");
+                            assert!(
+                                parse_uci(&b, u).is_some(),
+                                "{ctx} : coup « faux » illégal {u}"
+                            );
                         }
                     }
                 }
@@ -137,5 +174,31 @@ fn glossary_is_sorted_and_complete() {
     for e in &entries {
         assert!(e["term"].as_str().is_some_and(|t| !t.is_empty()));
         assert!(e["def"].as_str().is_some_and(|d| d.len() > 20));
+    }
+}
+
+/// Parties célèbres du plateau 3D de l'accueil : chaque coup UCI est légal et la notation
+/// française correspond au coup (sinon l'animation montrerait autre chose que la légende).
+#[test]
+fn famous_games_replay_legally() {
+    use chess_engine::san::{to_san, Language};
+    let games: Vec<Value> = serde_json::from_str(FAMOUS_GAMES).expect("famous-games.json invalide");
+    assert!(games.len() >= 4);
+    for game in &games {
+        let title = game["title"].as_str().unwrap();
+        let uci = strs(&game["uci"]);
+        let san = strs(&game["san"]);
+        assert_eq!(
+            uci.len(),
+            san.len(),
+            "{title} : autant de coups UCI que de notations"
+        );
+        let mut b = Board::starting_position();
+        for (i, (u, s)) in uci.iter().zip(&san).enumerate() {
+            let mv =
+                parse_uci(&b, u).unwrap_or_else(|| panic!("{title} : coup {i} « {u} » illégal"));
+            assert_eq!(&to_san(&b, mv, Language::French), s, "{title} : coup {i}");
+            b = b.make_move(mv);
+        }
     }
 }

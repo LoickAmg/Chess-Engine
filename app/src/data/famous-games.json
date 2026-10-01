@@ -1,0 +1,37 @@
+[
+  {
+    "title": "La partie de l'Opéra",
+    "players": "Paul Morphy – duc de Brunswick et comte Isouard",
+    "place": "Paris, 1858",
+    "uci": ["e2e4", "e7e5", "g1f3", "d7d6", "d2d4", "c8g4", "d4e5", "g4f3", "d1f3", "d6e5", "f1c4", "g8f6", "f3b3", "d8e7", "b1c3", "c7c6", "c1g5", "b7b5", "c3b5", "c6b5", "c4b5", "b8d7", "e1c1", "a8d8", "d1d7", "d8d7", "h1d1", "e7e6", "b5d7", "f6d7", "b3b8", "d7b8", "d1d8"],
+    "san": ["e4", "e5", "Cf3", "d6", "d4", "Fg4", "dxe5", "Fxf3", "Dxf3", "dxe5", "Fc4", "Cf6", "Db3", "De7", "Cc3", "c6", "Fg5", "b5", "Cxb5", "cxb5", "Fxb5+", "Cbd7", "O-O-O", "Td8", "Txd7", "Txd7", "Td1", "De6", "Fxd7+", "Cxd7", "Db8+", "Cxb8", "Td8#"]
+  },
+  {
+    "title": "L'Immortelle",
+    "players": "Adolf Anderssen – Lionel Kieseritzky",
+    "place": "Londres, 1851",
+    "uci": ["e2e4", "e7e5", "f2f4", "e5f4", "f1c4", "d8h4", "e1f1", "b7b5", "c4b5", "g8f6", "g1f3", "h4h6", "d2d3", "f6h5", "f3h4", "h6g5", "h4f5", "c7c6", "g2g4", "h5f6", "h1g1", "c6b5", "h2h4", "g5g6", "h4h5", "g6g5", "d1f3", "f6g8", "c1f4", "g5f6", "b1c3", "f8c5", "c3d5", "f6b2", "f4d6", "c5g1", "e4e5", "b2a1", "f1e2", "b8a6", "f5g7", "e8d8", "f3f6", "g8f6", "d6e7"],
+    "san": ["e4", "e5", "f4", "exf4", "Fc4", "Dh4+", "Rf1", "b5", "Fxb5", "Cf6", "Cf3", "Dh6", "d3", "Ch5", "Ch4", "Dg5", "Cf5", "c6", "g4", "Cf6", "Tg1", "cxb5", "h4", "Dg6", "h5", "Dg5", "Df3", "Cg8", "Fxf4", "Df6", "Cc3", "Fc5", "Cd5", "Dxb2", "Fd6", "Fxg1", "e5", "Dxa1+", "Re2", "Ca6", "Cxg7+", "Rd8", "Df6+", "Cxf6", "Fe7#"]
+  },
+  {
+    "title": "La Toujours Jeune",
+    "players": "Adolf Anderssen – Jean Dufresne",
+    "place": "Berlin, 1852",
+    "uci": ["e2e4", "e7e5", "g1f3", "b8c6", "f1c4", "f8c5", "b2b4", "c5b4", "c2c3", "b4a5", "d2d4", "e5d4", "e1g1", "d4d3", "d1b3", "d8f6", "e4e5", "f6g6", "f1e1", "g8e7", "c1a3", "b7b5", "b3b5", "a8b8", "b5a4", "a5b6", "b1d2", "c8b7", "d2e4", "g6f5", "c4d3", "f5h5", "e4f6", "g7f6", "e5f6", "h8g8", "a1d1", "h5f3", "e1e7", "c6e7", "a4d7", "e8d7", "d3f5", "d7e8", "f5d7", "e8f8", "a3e7"],
+    "san": ["e4", "e5", "Cf3", "Cc6", "Fc4", "Fc5", "b4", "Fxb4", "c3", "Fa5", "d4", "exd4", "O-O", "d3", "Db3", "Df6", "e5", "Dg6", "Te1", "Cge7", "Fa3", "b5", "Dxb5", "Tb8", "Da4", "Fb6", "Cbd2", "Fb7", "Ce4", "Df5", "Fxd3", "Dh5", "Cf6+", "gxf6", "exf6", "Tg8", "Tad1", "Dxf3", "Txe7+", "Cxe7", "Dxd7+", "Rxd7", "Ff5+", "Re8", "Fd7+", "Rf8", "Fxe7#"]
+  },
+  {
+    "title": "La partie du siècle",
+    "players": "Donald Byrne – Bobby Fischer",
+    "place": "New York, 1956",
+    "uci": ["g1f3", "g8f6", "c2c4", "g7g6", "b1c3", "f8g7", "d2d4", "e8g8", "c1f4", "d7d5", "d1b3", "d5c4", "b3c4", "c7c6", "e2e4", "b8d7", "a1d1", "d7b6", "c4c5", "c8g4", "f4g5", "b6a4", "c5a3", "a4c3", "b2c3", "f6e4", "g5e7", "d8b6", "f1c4", "e4c3", "e7c5", "f8e8", "e1f1", "g4e6", "c5b6", "e6c4", "f1g1", "c3e2", "g1f1", "e2d4", "f1g1", "d4e2", "g1f1", "e2c3", "f1g1", "a7b6", "a3b4", "a8a4", "b4b6", "c3d1", "h2h3", "a4a2", "g1h2", "d1f2", "h1e1", "e8e1", "b6d8", "g7f8", "f3e1", "c4d5", "e1f3", "f2e4", "d8b8", "b7b5", "h3h4", "h7h5", "f3e5", "g8g7", "h2g1", "f8c5", "g1f1", "e4g3", "f1e1", "c5b4", "e1d1", "d5b3", "d1c1", "g3e2", "c1b1", "e2c3", "b1c1", "a2c2"],
+    "san": ["Cf3", "Cf6", "c4", "g6", "Cc3", "Fg7", "d4", "O-O", "Ff4", "d5", "Db3", "dxc4", "Dxc4", "c6", "e4", "Cbd7", "Td1", "Cb6", "Dc5", "Fg4", "Fg5", "Ca4", "Da3", "Cxc3", "bxc3", "Cxe4", "Fxe7", "Db6", "Fc4", "Cxc3", "Fc5", "Tfe8+", "Rf1", "Fe6", "Fxb6", "Fxc4+", "Rg1", "Ce2+", "Rf1", "Cxd4+", "Rg1", "Ce2+", "Rf1", "Cc3+", "Rg1", "axb6", "Db4", "Ta4", "Dxb6", "Cxd1", "h3", "Txa2", "Rh2", "Cxf2", "Te1", "Txe1", "Dd8+", "Ff8", "Cxe1", "Fd5", "Cf3", "Ce4", "Db8", "b5", "h4", "h5", "Ce5", "Rg7", "Rg1", "Fc5+", "Rf1", "Cg3+", "Re1", "Fb4+", "Rd1", "Fb3+", "Rc1", "Ce2+", "Rb1", "Cc3+", "Rc1", "Tc2#"]
+  },
+  {
+    "title": "L'immortelle de Kasparov",
+    "players": "Garry Kasparov – Veselin Topalov",
+    "place": "Wijk aan Zee, 1999",
+    "uci": ["e2e4", "d7d6", "d2d4", "g8f6", "b1c3", "g7g6", "c1e3", "f8g7", "d1d2", "c7c6", "f2f3", "b7b5", "g1e2", "b8d7", "e3h6", "g7h6", "d2h6", "c8b7", "a2a3", "e7e5", "e1c1", "d8e7", "c1b1", "a7a6", "e2c1", "e8c8", "c1b3", "e5d4", "d1d4", "c6c5", "d4d1", "d7b6", "g2g3", "c8b8", "b3a5", "b7a8", "f1h3", "d6d5", "h6f4", "b8a7", "h1e1", "d5d4", "c3d5", "b6d5", "e4d5", "e7d6", "d1d4", "c5d4", "e1e7", "a7b6", "f4d4", "b6a5", "b2b4", "a5a4", "d4c3", "d6d5", "e7a7", "a8b7", "a7b7", "d5c4", "c3f6", "a4a3", "f6a6", "a3b4", "c2c3", "b4c3", "a6a1", "c3d2", "a1b2", "d2d1", "h3f1", "d8d2", "b7d7", "d2d7", "f1c4", "b5c4", "b2h8", "d7d3", "h8a8", "c4c3", "a8a4", "d1e1", "f3f4", "f7f5", "b1c1", "d3d2", "a4a7"],
+    "san": ["e4", "d6", "d4", "Cf6", "Cc3", "g6", "Fe3", "Fg7", "Dd2", "c6", "f3", "b5", "Cge2", "Cbd7", "Fh6", "Fxh6", "Dxh6", "Fb7", "a3", "e5", "O-O-O", "De7", "Rb1", "a6", "Cc1", "O-O-O", "Cb3", "exd4", "Txd4", "c5", "Td1", "Cb6", "g3", "Rb8", "Ca5", "Fa8", "Fh3", "d5", "Df4+", "Ra7", "The1", "d4", "Cd5", "Cbxd5", "exd5", "Dd6", "Txd4", "cxd4", "Te7+", "Rb6", "Dxd4+", "Rxa5", "b4+", "Ra4", "Dc3", "Dxd5", "Ta7", "Fb7", "Txb7", "Dc4", "Dxf6", "Rxa3", "Dxa6+", "Rxb4", "c3+", "Rxc3", "Da1+", "Rd2", "Db2+", "Rd1", "Ff1", "Td2", "Td7", "Txd7", "Fxc4", "bxc4", "Dxh8", "Td3", "Da8", "c3", "Da4+", "Re1", "f4", "f5", "Rc1", "Td2", "Da7"]
+  }
+]
